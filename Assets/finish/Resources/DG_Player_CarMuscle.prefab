@@ -700,6 +700,7 @@ MonoBehaviour:
   PlayerCamera: {fileID: 1288364109427902234}
   DeathRacePlayerProperties: {fileID: 11400000, guid: 114e48655e7fb4b48ac375370be4b76e,
     type: 2}
+  EnemyProperties: {fileID: 11400000, guid: 3ab855018d14f144ab43a7521aafd124, type: 2}
   audioSource: {fileID: 667479605209730864}
   laserGun: {fileID: 8300000, guid: ac1cef8cadc95a24f8ddd690d7b67cc9, type: 3}
   machineGun: {fileID: 8300000, guid: 09448d0e6e446a149a0a3a81b2aa8be0, type: 3}

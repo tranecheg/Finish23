@@ -7,7 +7,7 @@ using Photon.Pun;
 public class TakeDamage : MonoBehaviourPun
 {
     public float starthHealth = 100f;
-    private float health;
+    public float health;
     public Image healthBar;
 
     Rigidbody rb;

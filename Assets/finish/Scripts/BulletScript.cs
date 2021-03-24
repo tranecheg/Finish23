@@ -33,6 +33,14 @@ public class BulletScript : MonoBehaviour
                 collision.gameObject.GetComponent<PhotonView>().RPC("DoDamage", RpcTarget.AllBuffered, bulletDamage);
             }         
         }
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            if (collision.gameObject.GetComponent<PhotonView>().IsMine)
+            {
+                collision.gameObject.GetComponent<PhotonView>().RPC("DoDamage", RpcTarget.AllBuffered, bulletDamage);
+            }
+
+        }
     }
 
     public void Initialize(Vector3 _direction,float speed, float damage)

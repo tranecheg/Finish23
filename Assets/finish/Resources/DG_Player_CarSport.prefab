@@ -383,6 +383,7 @@ MonoBehaviour:
   PlayerCamera: {fileID: 8985360257163249780}
   DeathRacePlayerProperties: {fileID: 11400000, guid: 84bedbebb6ff249418502a5fe9a7da33,
     type: 2}
+  EnemyProperties: {fileID: 11400000, guid: 3ab855018d14f144ab43a7521aafd124, type: 2}
   audioSource: {fileID: 2728863237371270969}
   laserGun: {fileID: 8300000, guid: ac1cef8cadc95a24f8ddd690d7b67cc9, type: 3}
   machineGun: {fileID: 8300000, guid: 09448d0e6e446a149a0a3a81b2aa8be0, type: 3}
@@ -401,6 +402,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   starthHealth: 100
+  health: 0
   healthBar: {fileID: 4743990239124289505}
   PlayerGraphics: {fileID: 1794880438820313497}
   PlayerUI: {fileID: 7731054696926973544}

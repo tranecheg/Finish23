@@ -10,7 +10,7 @@ public class Shooting : MonoBehaviourPun
     public Camera PlayerCamera;
 
     public DeathRacePlayer DeathRacePlayerProperties;
-
+    public DeathRaceEnemy EnemyProperties;
     public AudioSource audioSource;
     public AudioClip laserGun;
     public AudioClip machineGun;
@@ -107,7 +107,14 @@ public class Shooting : MonoBehaviourPun
                     }
                 
                 }
+                if (_hit.collider.gameObject.CompareTag("Enemy"))
+                {
+                    if (_hit.collider.gameObject.GetComponent<PhotonView>().IsMine)
+                    {
+                        _hit.collider.gameObject.GetComponent<PhotonView>().RPC("DoDamage", RpcTarget.AllBuffered, EnemyProperties.damage);
+                    }
 
+                }
 
 
                 StopAllCoroutines();
