@@ -6,13 +6,13 @@ using Photon.Pun;
 
 public class EnemySpawn : MonoBehaviour
 {
-    public GameObject enemyPrefab;
+    public GameObject[] enemyPrefab;
    
     void Start()
     {
         if (PhotonNetwork.IsMasterClient)
         {
-            PhotonNetwork.Instantiate(enemyPrefab.name, transform.position, Quaternion.identity);
+            PhotonNetwork.Instantiate(enemyPrefab[Random.Range(0, 3)].name, transform.position, Quaternion.identity);
            
         }
     }

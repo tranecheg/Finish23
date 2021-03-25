@@ -14,20 +14,32 @@ public class EnemyController : MonoBehaviourPun
     private bool canShoot = true;
     
     public DeathRaceEnemy EnemyProperties;
+   
+
+    private bool useLaser;
+    public LineRenderer lineRenderer;
 
     // Start is called before the first frame update
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        player = GameObject.FindGameObjectWithTag("Player");
+        
         agent.speed = EnemyProperties.speedMove;
+
+        if (EnemyProperties.weaponName == "Laser Gun")
+            useLaser = true;
+
+        else
+            useLaser = false;
+        
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(!photonView.IsMine || player.GetComponent<TakeDamage>().health <= 0f)
+        player = GameObject.FindGameObjectWithTag("Player");
+        if (!photonView.IsMine || player.GetComponent<TakeDamage>().health <= 0f)
         {
             return;
         }
@@ -39,6 +51,7 @@ public class EnemyController : MonoBehaviourPun
         if (hit.transform != null && hit.transform.gameObject.CompareTag("Player") && canShoot)
         {
             photonView.RPC("StartFire", RpcTarget.All);
+           
         }
         
 
@@ -54,9 +67,46 @@ public class EnemyController : MonoBehaviourPun
     IEnumerator Fire()
     {
         canShoot = false;
+
+        if (useLaser)
+        {
+            //laser codes
+                
+            
+                if (!lineRenderer.enabled)
+                {
+                    lineRenderer.enabled = true;
+
+                }
+
+                lineRenderer.startWidth = 0.3f;
+                lineRenderer.endWidth = 0.1f;
+
+
+
+                lineRenderer.SetPosition(0, firePosition.position);
+                lineRenderer.SetPosition(1, player.transform.position);
+
+
+                if (hit.collider.gameObject.CompareTag("Player"))
+                {
+                    if (hit.collider.gameObject.GetComponent<PhotonView>().IsMine)
+                    {
+                        hit.collider.gameObject.GetComponent<PhotonView>().RPC("DoDamage", RpcTarget.AllBuffered, EnemyProperties.damage);
+                    }
+
+                }
+                yield return new WaitForSeconds(0.2f);
+                lineRenderer.enabled = false;
+        }
+        else
+        {
+            GameObject bullletGameObject = Instantiate(BulletPrefab, firePosition.position, Quaternion.identity);
+            bullletGameObject.GetComponent<BulletScript>().Initialize(ray.direction, EnemyProperties.bulletSpeed, EnemyProperties.damage);
+        }
         
-        GameObject bullletGameObject = Instantiate(BulletPrefab, firePosition.position, Quaternion.identity);
-        bullletGameObject.GetComponent<BulletScript>().Initialize(ray.direction, EnemyProperties.bulletSpeed, EnemyProperties.damage);
+
+
         
         yield return new WaitForSeconds(EnemyProperties.shootDelay);
         canShoot = true;

@@ -94,7 +94,7 @@ public class Shooting : MonoBehaviourPun
                 lineRenderer.startWidth = 0.3f;
                 lineRenderer.endWidth = 0.1f;
 
-
+                
 
                 lineRenderer.SetPosition(0,_firePosition);
                 lineRenderer.SetPosition(1,_hit.point);
