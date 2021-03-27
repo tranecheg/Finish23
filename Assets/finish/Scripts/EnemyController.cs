@@ -8,16 +8,21 @@ public class EnemyController : MonoBehaviourPun
     public GameObject BulletPrefab;
     public Transform firePosition;
     private NavMeshAgent agent;
-    private GameObject player;
+    public GameObject target;
     private RaycastHit hit;
     private Ray ray;
     private bool canShoot = true;
     
     public DeathRaceEnemy EnemyProperties;
-   
+    private string targetTag;
 
     private bool useLaser;
     public LineRenderer lineRenderer;
+
+    GameObject[] enemy;
+    GameObject closest;
+
+    private string nearest;
 
     // Start is called before the first frame update
     void Start()
@@ -31,6 +36,11 @@ public class EnemyController : MonoBehaviourPun
 
         else
             useLaser = false;
+
+        if (gameObject.tag == "Player")
+            targetTag = "Enemy";
+        else
+            targetTag = "Player";
         
 
     }
@@ -38,23 +48,41 @@ public class EnemyController : MonoBehaviourPun
     // Update is called once per frame
     void Update()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
-        if (!photonView.IsMine || player.GetComponent<TakeDamage>().health <= 0f)
+        enemy = GameObject.FindGameObjectsWithTag(targetTag);
+        target = GameObject.Find(FindClosestEnemy().name);
+        if (!photonView.IsMine)
         {
             return;
         }
 
-        agent.SetDestination(player.transform.position);
+        agent.SetDestination(target.transform.position);
 
         ray = new Ray(firePosition.position, firePosition.right);
         Physics.Raycast(ray, out hit, 30f);
-        if (hit.transform != null && hit.transform.gameObject.CompareTag("Player") && canShoot)
+        
+        if (hit.transform != null && hit.transform.gameObject.CompareTag(targetTag) && canShoot)
         {
             photonView.RPC("StartFire", RpcTarget.All);
-           
+            
         }
         
 
+    }
+    GameObject FindClosestEnemy()
+    {
+        float distance = Mathf.Infinity;
+        Vector3 position = transform.position;
+        foreach (GameObject go in enemy)
+        {
+            Vector3 diff = go.transform.position - position;
+            float curDistance = diff.sqrMagnitude;
+            if (curDistance < distance)
+            {
+                closest = go;
+                distance = curDistance;
+            }
+        }
+        return closest;
     }
 
     [PunRPC]
@@ -85,10 +113,10 @@ public class EnemyController : MonoBehaviourPun
 
 
                 lineRenderer.SetPosition(0, firePosition.position);
-                lineRenderer.SetPosition(1, player.transform.position);
+                lineRenderer.SetPosition(1, target.transform.position);
 
 
-                if (hit.collider.gameObject.CompareTag("Player"))
+                if (hit.collider.gameObject.CompareTag(targetTag))
                 {
                     if (hit.collider.gameObject.GetComponent<PhotonView>().IsMine)
                     {

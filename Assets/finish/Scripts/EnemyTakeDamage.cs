@@ -4,15 +4,20 @@ using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
 
-public class EnemyTakeDamage : MonoBehaviour
+public class EnemyTakeDamage : MonoBehaviourPun
 {
     public float starthHealth = 100f;
-    private float health;
+    public float health;
     public Image healthBar;
 
-    
+    Rigidbody rb;
 
-    // Start is called before the first frame update
+    public GameObject PlayerGraphics;
+    public GameObject PlayerUI;
+    public GameObject PlayerWeaponHolder;
+    private Vector3 startPos;
+
+    
     void Start()
     {
 
@@ -20,9 +25,13 @@ public class EnemyTakeDamage : MonoBehaviour
 
         healthBar.fillAmount = health / starthHealth;
 
+        startPos = transform.position;
+        rb = GetComponent<Rigidbody>();
 
+       
     }
 
+    
 
     [PunRPC]
     public void DoDamage(float _damage)
@@ -34,10 +43,39 @@ public class EnemyTakeDamage : MonoBehaviour
 
         if (health <= 0f)
         {
-            Destroy(gameObject);
+            StartCoroutine(ReSpawn());
         }
     }
 
+    IEnumerator ReSpawn()
+    {
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
 
-    
+        GetComponent<EnemyController>().enabled = false;
+
+        PlayerGraphics.SetActive(false);
+        PlayerUI.SetActive(false);
+        PlayerWeaponHolder.SetActive(false);
+
+        transform.position = startPos;
+
+        yield return new WaitForSeconds(5f);
+        photonView.RPC("Reborn", RpcTarget.AllBuffered);
+    }
+
+    [PunRPC]
+    public void Reborn()
+    {
+        health = starthHealth;
+        healthBar.fillAmount = health / starthHealth;
+
+        PlayerGraphics.SetActive(true);
+        PlayerUI.SetActive(true);
+        PlayerWeaponHolder.SetActive(true);
+        GetComponent<EnemyController>().enabled = true;
+    }
+
+
+
 }

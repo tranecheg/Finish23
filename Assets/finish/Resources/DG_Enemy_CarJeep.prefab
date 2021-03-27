@@ -239,7 +239,7 @@ GameObject:
   - component: {fileID: -1330144303748880546}
   m_Layer: 0
   m_Name: DG_Enemy_CarJeep
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -478,6 +478,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   starthHealth: 100
   healthBar: {fileID: 8405538685912174205}
+  PlayerGraphics: {fileID: 4190183117636471314}
+  PlayerUI: {fileID: 6789818912051017716}
+  PlayerWeaponHolder: {fileID: 2749850178701047273}
 --- !u!1 &4190183117636471314
 GameObject:
   m_ObjectHideFlags: 0

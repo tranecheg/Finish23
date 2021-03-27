@@ -27,6 +27,7 @@ public class TakeDamage : MonoBehaviourPun
         healthBar.fillAmount = health / starthHealth;
 
         rb = GetComponent<Rigidbody>();
+        
 
     }
 

@@ -244,7 +244,7 @@ GameObject:
   - component: {fileID: 5076253693027149288}
   m_Layer: 0
   m_Name: DG_Enemy_CarSport
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -483,6 +483,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   starthHealth: 100
   healthBar: {fileID: 4743990239124289505}
+  PlayerGraphics: {fileID: 1794880438820313497}
+  PlayerUI: {fileID: 7731054696926973544}
+  PlayerWeaponHolder: {fileID: 1452987648173347161}
 --- !u!1 &4409683804365795689
 GameObject:
   m_ObjectHideFlags: 0

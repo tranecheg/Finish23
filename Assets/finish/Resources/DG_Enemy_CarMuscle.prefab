@@ -478,7 +478,7 @@ GameObject:
   - component: {fileID: -4224018216448400974}
   m_Layer: 0
   m_Name: DG_Enemy_CarMuscle
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -702,6 +702,7 @@ MonoBehaviour:
     type: 3}
   firePosition: {fileID: 465340505}
   EnemyProperties: {fileID: 11400000, guid: 199f0b9eafb1bb8419a2a8c0cfc767f2, type: 2}
+  lineRenderer: {fileID: 0}
 --- !u!114 &-4224018216448400974
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -716,6 +717,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   starthHealth: 100
   healthBar: {fileID: 6169995472539599823}
+  PlayerGraphics: {fileID: 4066029184427409344}
+  PlayerUI: {fileID: 9168214507227658822}
+  PlayerWeaponHolder: {fileID: 6629574214750171726}
 --- !u!1 &6455898760384394329
 GameObject:
   m_ObjectHideFlags: 0
