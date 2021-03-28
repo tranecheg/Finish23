@@ -7,7 +7,7 @@ using Photon.Pun;
 public class EnemySpawn : MonoBehaviour
 {
     public GameObject[] enemyPrefab, TeamA, TeamB;
-    private int enemyCount;
+    
    
     void Start()
     {
@@ -31,9 +31,10 @@ public class EnemySpawn : MonoBehaviour
             if (PhotonNetwork.IsMasterClient)
             {
 
-                GameObject enemy = PhotonNetwork.Instantiate(enemyPrefab[Random.Range(0, 3)].name, transform.position, Quaternion.identity);
-                enemyCount++;
-                enemy.name = "PlayerA " + enemyCount;
+                GameObject enemy = PhotonNetwork.Instantiate(enemyPrefab[Random.Range(0, 3)].name,
+                    new Vector3(Random.Range(-20,20), 1, -55), Quaternion.identity);
+                
+                enemy.name = "PlayerA " + TeamA.Length;
                 enemy.tag = "Player";
 
             }
@@ -46,9 +47,10 @@ public class EnemySpawn : MonoBehaviour
             if (PhotonNetwork.IsMasterClient)
             {
 
-                GameObject enemy = PhotonNetwork.Instantiate(enemyPrefab[Random.Range(0, 3)].name, transform.position, Quaternion.identity);
-                enemyCount++;
-                enemy.name = "PlayerB " + enemyCount;
+                GameObject enemy = PhotonNetwork.Instantiate(enemyPrefab[Random.Range(0, 3)].name,
+                    new Vector3(Random.Range(-20, 20), 1, 55), Quaternion.identity);
+                
+                enemy.name = "PlayerB " + TeamB.Length;
                 enemy.tag = "Enemy";
 
             }

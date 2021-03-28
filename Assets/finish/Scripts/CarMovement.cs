@@ -12,6 +12,8 @@ public class CarMovement : MonoBehaviour
 
     public bool controlsEnabled;
 
+    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -50,5 +52,7 @@ public class CarMovement : MonoBehaviour
                 rb.AddRelativeTorque(rotationTorque);
             }
         }
+
+        
     }
 }

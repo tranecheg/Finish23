@@ -701,6 +701,7 @@ MonoBehaviour:
   BulletPrefab: {fileID: 8199238421558078776, guid: 35d44458c1899014786bf478fba74a09,
     type: 3}
   firePosition: {fileID: 465340505}
+  target: {fileID: 0}
   EnemyProperties: {fileID: 11400000, guid: 199f0b9eafb1bb8419a2a8c0cfc767f2, type: 2}
   lineRenderer: {fileID: 0}
 --- !u!114 &-4224018216448400974
@@ -716,6 +717,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   starthHealth: 100
+  health: 0
   healthBar: {fileID: 6169995472539599823}
   PlayerGraphics: {fileID: 4066029184427409344}
   PlayerUI: {fileID: 9168214507227658822}

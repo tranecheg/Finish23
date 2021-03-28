@@ -61,6 +61,11 @@ public class EnemyTakeDamage : MonoBehaviourPun
         transform.position = startPos;
 
         yield return new WaitForSeconds(5f);
+
+        if (gameObject.CompareTag("Player"))
+            TakeDamage.scoreA++;
+        else
+            TakeDamage.scoreB++;
         photonView.RPC("Reborn", RpcTarget.AllBuffered);
     }
 

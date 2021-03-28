@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class DeathRaceGameManager : MonoBehaviourPunCallbacks
 {
     public GameObject[] PlayerPrefabs;
-
+    public Text score;
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +31,13 @@ public class DeathRaceGameManager : MonoBehaviourPunCallbacks
        
 
         
+    }
+    private void Update()
+    {
+        score.text = "TeamA: " + TakeDamage.scoreA + "\nTeamB: " + TakeDamage.scoreB;
+
+        if(TakeDamage.scoreA==5 || TakeDamage.scoreB==5)
+            PhotonNetwork.LeaveRoom();
     }
 
 

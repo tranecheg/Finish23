@@ -18,6 +18,8 @@ public class TakeDamage : MonoBehaviourPun
     public GameObject DeathPanelUIPrefab;
     private GameObject DeathPanelUIGameObject;
 
+    public static int scoreA, scoreB;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -105,6 +107,11 @@ public class TakeDamage : MonoBehaviourPun
 
         int randomPoint = Random.Range(-20,20);
         transform.position = new Vector3(randomPoint,0,randomPoint);
+
+        if (gameObject.CompareTag("Player"))
+            scoreA++;
+        else
+            scoreB++;
 
         photonView.RPC("Reborn",RpcTarget.AllBuffered);
     }

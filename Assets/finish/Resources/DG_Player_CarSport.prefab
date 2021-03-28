@@ -336,6 +336,7 @@ MonoBehaviour:
   thrustForce: {x: 0, y: 0, z: 45}
   rotationTorque: {x: 0, y: 8, z: 0}
   controlsEnabled: 1
+  score: 
 --- !u!114 &1554686777613990951
 MonoBehaviour:
   m_ObjectHideFlags: 0
