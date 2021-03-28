@@ -36,8 +36,7 @@ public class DeathRaceGameManager : MonoBehaviourPunCallbacks
     {
         score.text = "TeamA: " + TakeDamage.scoreA + "\nTeamB: " + TakeDamage.scoreB;
 
-        if(TakeDamage.scoreA==5 || TakeDamage.scoreB==5)
-            PhotonNetwork.LeaveRoom();
+                   
     }
 
 
@@ -50,8 +49,9 @@ public class DeathRaceGameManager : MonoBehaviourPunCallbacks
     {
         SceneManager.LoadScene("LobbyScene");
 
-
     }
+
+    
 
    
 }

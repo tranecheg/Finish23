@@ -63,9 +63,9 @@ public class EnemyTakeDamage : MonoBehaviourPun
         yield return new WaitForSeconds(5f);
 
         if (gameObject.CompareTag("Player"))
-            TakeDamage.scoreA++;
-        else
             TakeDamage.scoreB++;
+        else
+            TakeDamage.scoreA++;
         photonView.RPC("Reborn", RpcTarget.AllBuffered);
     }
 

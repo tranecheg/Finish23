@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
+using UnityEngine.SceneManagement;
 
 public class TakeDamage : MonoBehaviourPun
 {
@@ -32,6 +33,8 @@ public class TakeDamage : MonoBehaviourPun
         
 
     }
+
+    
 
 
     [PunRPC]
@@ -109,9 +112,9 @@ public class TakeDamage : MonoBehaviourPun
         transform.position = new Vector3(randomPoint,0,randomPoint);
 
         if (gameObject.CompareTag("Player"))
-            scoreA++;
-        else
             scoreB++;
+        else
+            scoreA++;
 
         photonView.RPC("Reborn",RpcTarget.AllBuffered);
     }
@@ -132,6 +135,12 @@ public class TakeDamage : MonoBehaviourPun
     // Update is called once per frame
     void Update()
     {
-        
+        if (scoreA == 2 || scoreB == 2)
+        {
+            PhotonNetwork.LeaveRoom();
+            PhotonNetwork.Disconnect();
+
+        }
     }
+    
 }
