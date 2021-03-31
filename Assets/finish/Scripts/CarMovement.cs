@@ -30,10 +30,8 @@ public class CarMovement : MonoBehaviour
         {
             float horPos = Input.GetAxis("Horizontal");
             float verPos = Input.GetAxis("Vertical");
-            if(verPos!=0)
-                rb.AddRelativeForce(thrustForce * verPos);
-            if (horPos != 0)
-                rb.AddRelativeTorque(rotationTorque * horPos);
+            rb.AddRelativeForce(thrustForce * verPos);
+            rb.AddRelativeTorque(rotationTorque * horPos);
            
         }
 
