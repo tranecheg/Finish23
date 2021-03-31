@@ -49,6 +49,11 @@ public class EnemyTakeDamage : MonoBehaviourPun
 
     IEnumerator ReSpawn()
     {
+        if (gameObject.CompareTag("Player"))
+            TakeDamage.scoreB++;
+        else
+            TakeDamage.scoreA++;
+
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
 
@@ -62,10 +67,7 @@ public class EnemyTakeDamage : MonoBehaviourPun
 
         yield return new WaitForSeconds(5f);
 
-        if (gameObject.CompareTag("Player"))
-            TakeDamage.scoreB++;
-        else
-            TakeDamage.scoreA++;
+        
         photonView.RPC("Reborn", RpcTarget.AllBuffered);
     }
 

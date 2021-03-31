@@ -12,7 +12,7 @@ public class CarMovement : MonoBehaviour
 
     public bool controlsEnabled;
 
-    
+    private string targetTag;
 
     // Start is called before the first frame update
     void Start()
@@ -20,6 +20,7 @@ public class CarMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
 
         controlsEnabled = false;
+       
     }
 
     // Update is called once per frame
@@ -27,30 +28,13 @@ public class CarMovement : MonoBehaviour
     {
         if (controlsEnabled)
         {
-            //moving forward
-            if (Input.GetKey("w"))
-            {
-                rb.AddRelativeForce(thrustForce);
-            }
-
-            // moving backward
-            if (Input.GetKey("s"))
-            {
-                rb.AddRelativeForce(-thrustForce);
-            }
-
-
-            //turning left
-            if (Input.GetKey("a"))
-            {
-                rb.AddRelativeTorque(-rotationTorque);
-            }
-
-            //turning right
-            if (Input.GetKey("d"))
-            {
-                rb.AddRelativeTorque(rotationTorque);
-            }
+            float horPos = Input.GetAxis("Horizontal");
+            float verPos = Input.GetAxis("Vertical");
+            if(verPos!=0)
+                rb.AddRelativeForce(thrustForce * verPos);
+            if (horPos != 0)
+                rb.AddRelativeTorque(rotationTorque * horPos);
+           
         }
 
         
