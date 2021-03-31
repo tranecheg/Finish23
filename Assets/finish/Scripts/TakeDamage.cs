@@ -30,12 +30,10 @@ public class TakeDamage : MonoBehaviourPun
         healthBar.fillAmount = health / starthHealth;
 
         rb = GetComponent<Rigidbody>();
-
-        scoreA = 0;
-        scoreB = 0;
-
+        
         string[] tags = { "Player", "Enemy" };
         gameObject.tag = tags[Random.Range(0,2)];
+
 
     }
 
@@ -140,17 +138,11 @@ public class TakeDamage : MonoBehaviourPun
     // Update is called once per frame
     void Update()
     {
-        if (scoreA >0 || scoreB > 0)
-        {
-            
-            PhotonNetwork.DestroyAll();
-            PhotonNetwork.Disconnect();
-            
-            
-            
-        }
+        
     }
+    
+    
 
-    
-    
+
+
 }

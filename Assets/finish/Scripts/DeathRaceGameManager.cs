@@ -27,16 +27,31 @@ public class DeathRaceGameManager : MonoBehaviourPunCallbacks
             }
 
         }
+        TakeDamage.scoreA = 0;
+        TakeDamage.scoreB = 0;
 
-       
+        StartCoroutine(Leave());
 
-        
+
+
+
     }
     private void Update()
     {
         score.text = "TeamA: " + TakeDamage.scoreA + "\nTeamB: " + TakeDamage.scoreB;
+    }
+    IEnumerator Leave()
+    {
+        while (true)
+        {
+            if (TakeDamage.scoreA > 0 || TakeDamage.scoreB > 0)
+                OnQuitMatchButtonClicked();
 
-                   
+            yield return new WaitForSeconds(1f);
+        }
+
+
+
     }
 
 
