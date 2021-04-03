@@ -9,11 +9,12 @@ public class DeathRaceGameManager : MonoBehaviourPunCallbacks
 {
     public GameObject[] PlayerPrefabs;
     public Text score;
+    
 
     // Start is called before the first frame update
     void Start()
     {
-
+        
         if (PhotonNetwork.IsConnectedAndReady)
         {
 

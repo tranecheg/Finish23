@@ -58,7 +58,7 @@ public class TimeCountDownManager : MonoBehaviourPun
     [PunRPC]
     public void StartTheRace()
     {
-        GetComponent<CarMovement>().controlsEnabled = true;
+       // GetComponent<CarMovement>().controlsEnabled = true;
         this.enabled = false;
     }
 

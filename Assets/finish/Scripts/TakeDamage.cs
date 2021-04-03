@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
 using UnityEngine.SceneManagement;
+using UnityStandardAssets.Vehicles.Car;
 
 public class TakeDamage : MonoBehaviourPun
 {
@@ -21,10 +22,15 @@ public class TakeDamage : MonoBehaviourPun
 
     public static int scoreA, scoreB;
 
-    // Start is called before the first frame update
+    private void Awake()
+    {
+        gameObject.name = PhotonNetwork.LocalPlayer.NickName;
+    }
     void Start()
     {
-
+        GetComponent<CarUserControl>().enabled = true;
+        GetComponent<CarController>().enabled = true;
+        
         health = starthHealth;
 
         healthBar.fillAmount = health / starthHealth;
@@ -100,14 +106,14 @@ public class TakeDamage : MonoBehaviourPun
             respawnTimeText.text = respawnTime.ToString(".00f");
 
 
-            GetComponent<CarMovement>().enabled = false;
+            //GetComponent<CarMovement>().enabled = false;
             GetComponent<Shooting>().enabled = false;
         }
 
 
         DeathPanelUIGameObject.SetActive(false);
 
-        GetComponent<CarMovement>().enabled = true;
+       // GetComponent<CarMovement>().enabled = true;
         GetComponent<Shooting>().enabled = true;
 
 

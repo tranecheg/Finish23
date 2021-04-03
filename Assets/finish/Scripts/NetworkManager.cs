@@ -268,6 +268,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
             foreach (Player player in PhotonNetwork.PlayerList)
             {
                 GameObject playerListGameObject = Instantiate(PlayerListPrefab);
+                
                 playerListGameObject.transform.SetParent(PlayerListContent.transform);
                 playerListGameObject.transform.localScale = Vector3.one;
                 playerListGameObject.GetComponent<PlayerListEntryInitializer>().Initialize(player.ActorNumber, player.NickName);

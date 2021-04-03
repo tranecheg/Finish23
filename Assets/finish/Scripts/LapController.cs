@@ -99,7 +99,7 @@ public class LapController : MonoBehaviourPun
     void GameFinished()
     {
         GetComponent<PlayerSetup>().PlayerCamera.transform.parent = null;
-        GetComponent<CarMovement>().enabled = false;
+       // GetComponent<CarMovement>().enabled = false;
 
         finishOrder += 1;
 

@@ -19,7 +19,7 @@ public class PlayerListEntryInitializer : MonoBehaviour
 
 
         PlayerNameText.text = playerName;
-
+        
 
         if (PhotonNetwork.LocalPlayer.ActorNumber != playerID)
         {
@@ -31,6 +31,7 @@ public class PlayerListEntryInitializer : MonoBehaviour
 
             ExitGames.Client.Photon.Hashtable initialProps = new ExitGames.Client.Photon.Hashtable() { {MultiplayerRacingGame.PLAYER_READY,isPlayerReady}};
             PhotonNetwork.LocalPlayer.SetCustomProperties(initialProps);
+            
 
             PlayerReadyButton.onClick.AddListener(() =>
             {
