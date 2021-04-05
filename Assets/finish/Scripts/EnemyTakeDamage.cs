@@ -16,7 +16,7 @@ public class EnemyTakeDamage : MonoBehaviourPun
     public GameObject PlayerUI;
     public GameObject PlayerWeaponHolder;
     private Vector3 startPos;
-
+    
     
     void Start()
     {
@@ -49,6 +49,8 @@ public class EnemyTakeDamage : MonoBehaviourPun
 
     IEnumerator ReSpawn()
     {
+        Debug.Log(gameObject.name);
+
         if (gameObject.CompareTag("Player"))
             TakeDamage.scoreB++;
         else
@@ -81,6 +83,8 @@ public class EnemyTakeDamage : MonoBehaviourPun
         PlayerUI.SetActive(true);
         PlayerWeaponHolder.SetActive(true);
         GetComponent<EnemyController>().enabled = true;
+        
+        
     }
 
 

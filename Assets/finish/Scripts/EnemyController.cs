@@ -63,10 +63,11 @@ public class EnemyController : MonoBehaviourPun
         if (hit.transform != null && hit.transform.gameObject.CompareTag(targetTag) && canShoot)
         {
             photonView.RPC("StartFire", RpcTarget.All);
-            
+ 
+          
         }
         
-
+        
     }
     GameObject FindClosestEnemy()
     {
@@ -121,7 +122,8 @@ public class EnemyController : MonoBehaviourPun
                     if (hit.collider.gameObject.GetComponent<PhotonView>().IsMine)
                     {
                         hit.collider.gameObject.GetComponent<PhotonView>().RPC("DoDamage", RpcTarget.AllBuffered, EnemyProperties.damage);
-                    }
+                      
+                }
 
                 }
                 yield return new WaitForSeconds(0.2f);
@@ -131,10 +133,10 @@ public class EnemyController : MonoBehaviourPun
         {
             GameObject bullletGameObject = Instantiate(BulletPrefab, firePosition.position, Quaternion.identity);
             bullletGameObject.GetComponent<BulletScript>().Initialize(ray.direction, EnemyProperties.bulletSpeed, EnemyProperties.damage);
+            bullletGameObject.name = gameObject.name;
+
+
         }
-        
-
-
         
         yield return new WaitForSeconds(EnemyProperties.shootDelay);
         canShoot = true;

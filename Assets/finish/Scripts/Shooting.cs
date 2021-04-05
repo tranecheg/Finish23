@@ -7,7 +7,7 @@ public class Shooting : MonoBehaviourPun
 {
     public GameObject BulletPrefab;
     public Transform firePosition;
-    public Camera PlayerCamera;
+    
 
     public DeathRacePlayer DeathRacePlayerProperties;
     public DeathRaceEnemy EnemyProperties;
@@ -26,8 +26,9 @@ public class Shooting : MonoBehaviourPun
     // Start is called before the first frame update
     void Start()
     {
-
+       
         fireRate = DeathRacePlayerProperties.fireRate;
+
 
         if (DeathRacePlayerProperties.weaponName== "Laser Gun" )
         {
@@ -50,7 +51,7 @@ public class Shooting : MonoBehaviourPun
             return;
         }
 
-        if (Input.GetKey("space"))
+        if (Input.GetMouseButton(0))
         {
             if (fireTimer>fireRate)
             {
@@ -79,7 +80,7 @@ public class Shooting : MonoBehaviourPun
         {
             //laser codes
             RaycastHit _hit;
-            Ray ray = PlayerCamera.ViewportPointToRay(new Vector3(0.5f,0.5f));
+            Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f,0.5f));
 
             if (Physics.Raycast(ray,out _hit, 200))
             {
@@ -124,7 +125,7 @@ public class Shooting : MonoBehaviourPun
         }
         else
         {
-            Ray ray = PlayerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f));
+            Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f));
 
             GameObject bullletGameObject = Instantiate(BulletPrefab, _firePosition, Quaternion.identity);
             bullletGameObject.GetComponent<BulletScript>().Initialize(ray.direction, DeathRacePlayerProperties.bulletSpeed, DeathRacePlayerProperties.damage);

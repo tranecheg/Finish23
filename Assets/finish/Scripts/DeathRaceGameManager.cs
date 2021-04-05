@@ -45,7 +45,7 @@ public class DeathRaceGameManager : MonoBehaviourPunCallbacks
     {
         while (true)
         {
-            if (TakeDamage.scoreA > 0 || TakeDamage.scoreB > 0)
+            if (TakeDamage.scoreA > 1 || TakeDamage.scoreB > 1)
                 OnQuitMatchButtonClicked();
 
             yield return new WaitForSeconds(1f);

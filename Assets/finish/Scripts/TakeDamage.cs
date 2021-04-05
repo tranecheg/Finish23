@@ -138,8 +138,8 @@ public class TakeDamage : MonoBehaviourPun
         PlayerUI.SetActive(true);
         PlayerWeaponHolder.SetActive(true);
     }
-
-
+    
+    
 
     // Update is called once per frame
     void Update()

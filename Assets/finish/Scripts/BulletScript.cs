@@ -7,6 +7,8 @@ public class BulletScript : MonoBehaviour
 {
 
     float bulletDamage;
+    private string Killer;
+   
     // Start is called before the first frame update
     void Start()
     {
@@ -21,9 +23,6 @@ public class BulletScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
-        Destroy(gameObject);
-
-
        
         if (collision.gameObject.CompareTag("Player"))
         {
@@ -31,6 +30,7 @@ public class BulletScript : MonoBehaviour
             if (collision.gameObject.GetComponent<PhotonView>().IsMine)
             {
                 collision.gameObject.GetComponent<PhotonView>().RPC("DoDamage", RpcTarget.AllBuffered, bulletDamage);
+                
             }         
         }
         if (collision.gameObject.CompareTag("Enemy"))
@@ -38,9 +38,13 @@ public class BulletScript : MonoBehaviour
             if (collision.gameObject.GetComponent<PhotonView>().IsMine)
             {
                 collision.gameObject.GetComponent<PhotonView>().RPC("DoDamage", RpcTarget.AllBuffered, bulletDamage);
+            
+
             }
 
         }
+        Destroy(gameObject);
+
     }
 
     public void Initialize(Vector3 _direction,float speed, float damage)
@@ -51,5 +55,8 @@ public class BulletScript : MonoBehaviour
 
         Rigidbody rb = GetComponent<Rigidbody>();
         rb.velocity = _direction * speed;
+        
     }
+   
+    
 }

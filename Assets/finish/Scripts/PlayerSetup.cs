@@ -20,7 +20,7 @@ public class PlayerSetup : MonoBehaviourPunCallbacks
                 //enable carMovement script and camera
                // GetComponent<CarMovement>().enabled = true;
                 GetComponent<LapController>().enabled = true;
-                PlayerCamera.enabled = true;
+                //PlayerCamera.enabled = true;
 
             }
             else
@@ -28,7 +28,7 @@ public class PlayerSetup : MonoBehaviourPunCallbacks
                 //Player is remote. Disable CarMovement script and camera.
                // GetComponent<CarMovement>().enabled = false;
                 GetComponent<LapController>().enabled = false;
-                PlayerCamera.enabled = false;
+               // PlayerCamera.enabled = false;
 
             }
 
@@ -40,7 +40,7 @@ public class PlayerSetup : MonoBehaviourPunCallbacks
                 //enable carMovement script and camera
               //  GetComponent<CarMovement>().enabled = true;
               //  GetComponent<CarMovement>().controlsEnabled = true;
-                PlayerCamera.enabled = true;
+               // PlayerCamera.enabled = true;
 
             }
             else
@@ -48,7 +48,7 @@ public class PlayerSetup : MonoBehaviourPunCallbacks
                 //Player is remote. Disable CarMovement script and camera.
               //  GetComponent<CarMovement>().enabled = false;
                
-                PlayerCamera.enabled = false;
+               // PlayerCamera.enabled = false;
 
             }
         }

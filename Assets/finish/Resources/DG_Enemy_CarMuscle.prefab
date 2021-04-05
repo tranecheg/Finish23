@@ -476,6 +476,7 @@ GameObject:
   - component: {fileID: -8745730347836927157}
   - component: {fileID: 2787034345363732962}
   - component: {fileID: -4224018216448400974}
+  - component: {fileID: 3148560899501645259}
   m_Layer: 0
   m_Name: DG_Enemy_CarMuscle
   m_TagString: Untagged
@@ -678,7 +679,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 10
+  m_StoppingDistance: 20
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -722,6 +723,19 @@ MonoBehaviour:
   PlayerGraphics: {fileID: 4066029184427409344}
   PlayerUI: {fileID: 9168214507227658822}
   PlayerWeaponHolder: {fileID: 6629574214750171726}
+--- !u!114 &3148560899501645259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4689008684380552187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aca5a2e1306c8ea4a88adf5bfeffc913, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Killer: 
 --- !u!1 &6455898760384394329
 GameObject:
   m_ObjectHideFlags: 0
