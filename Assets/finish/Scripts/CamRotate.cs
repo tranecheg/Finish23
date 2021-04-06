@@ -4,7 +4,7 @@ using UnityEngine;
 using Photon.Pun;
 using UnityEngine.SceneManagement;
 
-public class CamRotate : MonoBehaviour
+public class CamRotate : MonoBehaviourPun
 {
     [SerializeField]
     private float _mouseSensitivity = 3.0f;
@@ -30,6 +30,8 @@ public class CamRotate : MonoBehaviour
 
     private void Start()
     {
+        if (photonView != null && !photonView.IsMine )
+            gameObject.SetActive(false);
         if(_target==null)
             _target = GameObject.Find(PhotonNetwork.LocalPlayer.NickName).transform;
     }

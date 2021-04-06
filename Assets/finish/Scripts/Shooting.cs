@@ -15,7 +15,7 @@ public class Shooting : MonoBehaviourPun
     public AudioClip laserGun;
     public AudioClip machineGun;
     public AudioClip rocketLauncher;
-
+    public Camera PlayerCamera;
 
 
     private float fireRate;
@@ -29,6 +29,7 @@ public class Shooting : MonoBehaviourPun
        
         fireRate = DeathRacePlayerProperties.fireRate;
 
+        //PlayerCamera = Camera.main;
 
         if (DeathRacePlayerProperties.weaponName== "Laser Gun" )
         {
@@ -51,7 +52,7 @@ public class Shooting : MonoBehaviourPun
             return;
         }
 
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) && photonView.IsMine)
         {
             if (fireTimer>fireRate)
             {
@@ -80,7 +81,7 @@ public class Shooting : MonoBehaviourPun
         {
             //laser codes
             RaycastHit _hit;
-            Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f,0.5f));
+            Ray ray = PlayerCamera.ViewportPointToRay(new Vector3(0.5f,0.5f));
 
             if (Physics.Raycast(ray,out _hit, 200))
             {
@@ -125,7 +126,7 @@ public class Shooting : MonoBehaviourPun
         }
         else
         {
-            Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f));
+            Ray ray = PlayerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f));
 
             GameObject bullletGameObject = Instantiate(BulletPrefab, _firePosition, Quaternion.identity);
             bullletGameObject.GetComponent<BulletScript>().Initialize(ray.direction, DeathRacePlayerProperties.bulletSpeed, DeathRacePlayerProperties.damage);

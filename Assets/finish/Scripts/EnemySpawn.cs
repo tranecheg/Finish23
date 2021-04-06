@@ -7,7 +7,7 @@ using Photon.Pun;
 public class EnemySpawn : MonoBehaviour
 {
     public GameObject[] enemyPrefab, TeamA, TeamB;
-    
+    public GameObject camPref;
    
     void Start()
     {

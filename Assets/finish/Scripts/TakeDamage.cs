@@ -22,12 +22,16 @@ public class TakeDamage : MonoBehaviourPun
 
     public static int scoreA, scoreB;
 
+   
     private void Awake()
     {
-        gameObject.name = PhotonNetwork.LocalPlayer.NickName;
+       
+       
     }
     void Start()
     {
+
+        gameObject.name = GetComponent<PhotonView>().Controller.NickName;
         GetComponent<CarUserControl>().enabled = true;
         GetComponent<CarController>().enabled = true;
         

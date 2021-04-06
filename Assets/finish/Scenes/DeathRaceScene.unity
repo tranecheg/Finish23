@@ -719,7 +719,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1344447056
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -738,6 +738,7 @@ MonoBehaviour:
   - {fileID: 3189090968767411349, guid: c7ecf72c8a08b5c4e8ce9751b72ea5e9, type: 3}
   TeamA: []
   TeamB: []
+  camPref: {fileID: 2702294734596424372, guid: ed95b42f76d23094ba8bde0628d4831c, type: 3}
 --- !u!4 &1344447057
 Transform:
   m_ObjectHideFlags: 0
@@ -949,7 +950,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1859101310
 Transform:
   m_ObjectHideFlags: 0
