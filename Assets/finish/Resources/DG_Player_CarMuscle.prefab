@@ -537,7 +537,7 @@ Transform:
   - {fileID: 2908882569239300770}
   - {fileID: 7743322584134432380}
   m_Father: {fileID: 5644282572656426752}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &4380613122824308325
 GameObject:
@@ -548,13 +548,16 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 889058424489412688}
+  - component: {fileID: 7004668642210926321}
+  - component: {fileID: 6389769225492106121}
+  - component: {fileID: 7075904361346454715}
   m_Layer: 0
   m_Name: CameraHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &889058424489412688
 Transform:
   m_ObjectHideFlags: 0
@@ -568,8 +571,64 @@ Transform:
   m_Children:
   - {fileID: 4919995207378486594}
   m_Father: {fileID: 5644282572656426752}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7004668642210926321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4380613122824308325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc0af05e8456bd24f9b41208850d7826, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _mouseSensitivity: 3
+  _target: {fileID: 0}
+  _distanceFromTarget: 7
+  _smoothTime: 0.2
+  _rotationXMinMax: {x: 0, y: 80}
+--- !u!114 &6389769225492106121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4380613122824308325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents:
+  - {fileID: 7075904361346454715}
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &7075904361346454715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4380613122824308325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
 --- !u!1 &4462897586190375105
 GameObject:
   m_ObjectHideFlags: 0
@@ -686,10 +745,10 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 889058424489412688}
   - {fileID: 1024051976448265683}
   - {fileID: 2127410450356602227}
   - {fileID: 7212769320368877376}
-  - {fileID: 889058424489412688}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -819,6 +878,8 @@ MonoBehaviour:
   PlayerWeaponHolder: {fileID: 6629574214750171726}
   DeathPanelUIPrefab: {fileID: 3593783272886976281, guid: 9bfb0f188d017884ca4192b2ecb55586,
     type: 3}
+  camPos: {x: 0, y: 0, z: 0}
+  camRot: {x: 0, y: 0, z: 0}
 --- !u!82 &667479605209730864
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1212,7 +1273,7 @@ Transform:
   - {fileID: 6746229937759624449}
   - {fileID: 465340505}
   m_Father: {fileID: 5644282572656426752}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &6660462403696097794
 GameObject:
@@ -1296,7 +1357,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6660462403696097794}
-  m_Enabled: 0
+  m_Enabled: 1
 --- !u!1 &7178724951685197421
 GameObject:
   m_ObjectHideFlags: 0
@@ -1766,7 +1827,7 @@ RectTransform:
   - {fileID: 7035286221568160173}
   - {fileID: 8313118724729451096}
   m_Father: {fileID: 5644282572656426752}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
