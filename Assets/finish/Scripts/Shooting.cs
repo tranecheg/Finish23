@@ -22,12 +22,15 @@ public class Shooting : MonoBehaviourPun
     private float fireTimer = 0.0f;
     private bool useLaser;
     public LineRenderer lineRenderer;
-
+    Ray ray;
+   
     // Start is called before the first frame update
     void Start()
     {
        
         fireRate = DeathRacePlayerProperties.fireRate;
+        if (!GetComponent<PhotonView>().Controller.IsLocal)
+            GetComponent<Shooting>().enabled = false;
 
         //PlayerCamera = Camera.main;
 
@@ -42,22 +45,21 @@ public class Shooting : MonoBehaviourPun
         
     }
 
-    // Update is called once per frame
     void Update()
     {
 
-
+        
         if (!photonView.IsMine)
         {
             return;
         }
 
-        if (Input.GetMouseButton(0) && photonView.IsMine)
+        if (Input.GetMouseButton(0))
         {
             if (fireTimer>fireRate)
             {
                 //fİRE
-                photonView.RPC("Fire",RpcTarget.All, firePosition.position);
+                photonView.RPC("Fire", RpcTarget.All, firePosition.position);
 
                 fireTimer = 0.0f;
             }       
@@ -68,10 +70,10 @@ public class Shooting : MonoBehaviourPun
         {
             fireTimer += Time.deltaTime;
         }
+        
 
 
     }
-
 
     [PunRPC]
     public void Fire(Vector3 _firePosition)
@@ -81,7 +83,7 @@ public class Shooting : MonoBehaviourPun
         {
             //laser codes
             RaycastHit _hit;
-            Ray ray = PlayerCamera.ViewportPointToRay(new Vector3(0.5f,0.5f));
+            ray = PlayerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f));
 
             if (Physics.Raycast(ray,out _hit, 200))
             {

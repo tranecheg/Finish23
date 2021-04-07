@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -1221106733376376664}
   - component: {fileID: 292645137567683577}
   - component: {fileID: 2191991538649927524}
-  - component: {fileID: 252240413242892503}
+  - component: {fileID: 9183038397001459941}
   m_Layer: 0
   m_Name: Rocket
   m_TagString: Untagged
@@ -144,11 +144,11 @@ MonoBehaviour:
   OwnershipTransfer: 0
   observableSearch: 2
   ObservedComponents:
-  - {fileID: 252240413242892503}
+  - {fileID: 9183038397001459941}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &252240413242892503
+--- !u!114 &9183038397001459941
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

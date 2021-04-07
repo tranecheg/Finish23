@@ -22,16 +22,16 @@ public class TakeDamage : MonoBehaviourPun
 
     public static int scoreA, scoreB;
 
-   
+    public Vector3 camPos, camRot;
     private void Awake()
     {
-       
-       
+        gameObject.name = GetComponent<PhotonView>().Controller.NickName;
+
     }
     void Start()
     {
 
-        gameObject.name = GetComponent<PhotonView>().Controller.NickName;
+        
         GetComponent<CarUserControl>().enabled = true;
         GetComponent<CarController>().enabled = true;
         
@@ -148,7 +148,11 @@ public class TakeDamage : MonoBehaviourPun
     // Update is called once per frame
     void Update()
     {
-        
+        if (!photonView.IsMine)
+        {
+            transform.GetChild(0).transform.localPosition = camPos;
+            transform.GetChild(0).transform.localEulerAngles = camRot;
+        }
     }
     
     

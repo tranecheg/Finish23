@@ -27,13 +27,23 @@ public class CamRotate : MonoBehaviourPun
     [SerializeField]
     private Vector2 _rotationXMinMax = new Vector2(-40, 40);
 
+    
 
     private void Start()
     {
-        if (photonView != null && !photonView.IsMine )
-            gameObject.SetActive(false);
+       if (photonView != null && !photonView.IsMine )
+           gameObject.SetActive(false);
         if(_target==null)
             _target = GameObject.Find(PhotonNetwork.LocalPlayer.NickName).transform;
+    }
+
+    private void FixedUpdate()
+    {
+        if (photonView == null)
+            return;
+        
+        
+        photonView.RPC("TransformCam", RpcTarget.AllBuffered, transform.localPosition, transform.localEulerAngles);
     }
 
     void Update()
@@ -48,12 +58,13 @@ public class CamRotate : MonoBehaviourPun
         }
         else if (SceneManager.GetActiveScene().name == "DeathRaceScene")
             CamMove();
-        
-        
-       
+
+
+
 
 
     }
+    
     void CamMove()
     {
         float mouseX = Input.GetAxis("Mouse X") * _mouseSensitivity;
@@ -75,5 +86,12 @@ public class CamRotate : MonoBehaviourPun
 
         // Substract forward vector of the GameObject to point its forward vector to the target
         transform.position = _target.position - transform.forward * _distanceFromTarget;
+    }
+
+    [PunRPC]
+    void TransformCam(Vector3 targPos, Vector3 targRot)
+    {
+        GameObject.Find(transform.parent.gameObject.name).GetComponent<TakeDamage>().camPos = targPos;
+        GameObject.Find(transform.parent.gameObject.name).GetComponent<TakeDamage>().camRot = targRot;
     }
 }

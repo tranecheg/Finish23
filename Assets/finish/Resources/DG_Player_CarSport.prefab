@@ -199,6 +199,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2709883872398674761}
   - component: {fileID: 6352452786261311376}
+  - component: {fileID: 4291165303924041644}
+  - component: {fileID: 2536454963881111675}
   m_Layer: 0
   m_Name: CameraHolder
   m_TagString: Untagged
@@ -238,6 +240,45 @@ MonoBehaviour:
   _distanceFromTarget: 7
   _smoothTime: 0.2
   _rotationXMinMax: {x: 0, y: 80}
+--- !u!114 &4291165303924041644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1307097086079467680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents:
+  - {fileID: 2536454963881111675}
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &2536454963881111675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1307097086079467680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
 --- !u!1 &1452987648173347161
 GameObject:
   m_ObjectHideFlags: 0
@@ -625,6 +666,8 @@ MonoBehaviour:
   PlayerWeaponHolder: {fileID: 1452987648173347161}
   DeathPanelUIPrefab: {fileID: 3593783272886976281, guid: 9bfb0f188d017884ca4192b2ecb55586,
     type: 3}
+  camPos: {x: 0, y: 0, z: 0}
+  camRot: {x: 0, y: 0, z: 0}
 --- !u!82 &2728863237371270969
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1798,7 +1841,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8547376123909835657}
-  m_Enabled: 0
+  m_Enabled: 1
 --- !u!1 &8640656725407193667
 GameObject:
   m_ObjectHideFlags: 0
