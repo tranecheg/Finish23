@@ -7,16 +7,20 @@ using Photon.Pun;
 public class EnemySpawn : MonoBehaviour
 {
     public GameObject[] enemyPrefab, TeamA, TeamB;
-    public GameObject camPref;
+    
    
     void Start()
     {
-        
+        if (PhotonNetwork.PlayerList.Length < 2)
+            gameObject.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!PhotonNetwork.IsMasterClient)
+            return;
+
         TeamA = GameObject.FindGameObjectsWithTag("Player");
         createTeamA();
         TeamB = GameObject.FindGameObjectsWithTag("Enemy");

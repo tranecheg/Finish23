@@ -29,6 +29,9 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public string GameMode;
 
     [Header("Inside Room Panel")]
+    public Text textTimeLeft;
+    public float maTime;
+    float timeLeft;
     public GameObject InsideRoomUIPanel;
     public Text RoomInfoText;
     public GameObject PlayerListPrefab;
@@ -56,17 +59,50 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         ActivatePanel(LoginUIPanel.name);
 
         PhotonNetwork.AutomaticallySyncScene = true;
-        
 
+        PlayerNameInput.text = "Player " + Random.Range(0, 10000);
+
+        timeLeft = maTime;
+        StartCoroutine(StartGame());
+
+        
     }
 
     // Update is called once per frame
     void Update()
     {
         
+        if (textTimeLeft.gameObject.activeSelf)
+        {
+            timeLeft -= Time.deltaTime;
+            textTimeLeft.text = Mathf.RoundToInt(timeLeft).ToString();
+            
+
+        }
+        else
+            timeLeft = maTime;
+
     }
 
+    IEnumerator StartGame()
+    {
+        while (true)
+        {
+            if(timeLeft <= 0)
+            {
+                timeLeft = 0;
+                OnStartGameButtonClicked();
+                
+            }
+
+            yield return new WaitForSeconds(1f);
+
+        }
+
+
+    }
     #endregion
+
 
 
     #region UI Callback Methods
@@ -156,6 +192,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         PhotonNetwork.LeaveRoom();
     }
 
+    
     public void OnStartGameButtonClicked()
     {
 
@@ -179,7 +216,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
 
     }
-
+    
 
     #endregion
 
@@ -210,6 +247,8 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         Debug.Log(PhotonNetwork.LocalPlayer.NickName + " joined to "+ PhotonNetwork.CurrentRoom.Name+ "Player count:"+ PhotonNetwork.CurrentRoom.PlayerCount);
 
         ActivatePanel(InsideRoomUIPanel.name);
+
+        
 
         if (PhotonNetwork.CurrentRoom.CustomProperties.ContainsKey("gm"))
         {
@@ -277,7 +316,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
                 object isPlayerReady;
                 if (player.CustomProperties.TryGetValue(MultiplayerRacingGame.PLAYER_READY,out isPlayerReady ))
                 {
-
+                        
                     playerListGameObject.GetComponent<PlayerListEntryInitializer>().SetPlayerReady((bool)isPlayerReady);
 
 
@@ -293,6 +332,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
         }
 
+        textTimeLeft.transform.gameObject.SetActive(false);
         StartGameButton.SetActive(false);
     }
 
@@ -310,6 +350,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
             }
         }
+        textTimeLeft.transform.gameObject.SetActive(CheckPlayersReady());
         StartGameButton.SetActive(CheckPlayersReady());
     }
 
@@ -330,6 +371,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
         playerListGameObjects.Add(newPlayer.ActorNumber, playerListGameObject);
 
+        textTimeLeft.transform.gameObject.SetActive(CheckPlayersReady());
         StartGameButton.SetActive(CheckPlayersReady());
 
     }
@@ -345,6 +387,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         Destroy(playerListGameObjects[otherPlayer.ActorNumber].gameObject);
         playerListGameObjects.Remove(otherPlayer.ActorNumber);
 
+        textTimeLeft.transform.gameObject.SetActive(CheckPlayersReady());
         StartGameButton.SetActive(CheckPlayersReady());
 
     }
@@ -371,6 +414,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     {
         if (PhotonNetwork.LocalPlayer.ActorNumber == newMasterClient.ActorNumber)
         {
+            textTimeLeft.transform.gameObject.SetActive(CheckPlayersReady());
             StartGameButton.SetActive(CheckPlayersReady());
         }
     }

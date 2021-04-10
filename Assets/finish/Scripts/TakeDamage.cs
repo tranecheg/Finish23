@@ -150,9 +150,10 @@ public class TakeDamage : MonoBehaviourPun
     {
         if (!photonView.IsMine)
         {
-            transform.GetChild(0).transform.localPosition = camPos;
+            transform.GetChild(0).transform.localPosition = new Vector3(transform.position.x + camPos.x, transform.position.y + camPos.y, transform.position.z + camPos.z);
             transform.GetChild(0).transform.localEulerAngles = camRot;
         }
+        
     }
     
     

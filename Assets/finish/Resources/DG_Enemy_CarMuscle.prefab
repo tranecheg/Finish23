@@ -723,6 +723,8 @@ MonoBehaviour:
   PlayerGraphics: {fileID: 4066029184427409344}
   PlayerUI: {fileID: 9168214507227658822}
   PlayerWeaponHolder: {fileID: 6629574214750171726}
+  textDeathPref: {fileID: 5896756875943371936, guid: 20795551b9e3b7840b0e742977eb9207,
+    type: 3}
 --- !u!114 &3148560899501645259
 MonoBehaviour:
   m_ObjectHideFlags: 0

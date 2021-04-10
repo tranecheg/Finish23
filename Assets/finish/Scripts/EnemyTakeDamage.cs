@@ -16,7 +16,8 @@ public class EnemyTakeDamage : MonoBehaviourPun
     public GameObject PlayerUI;
     public GameObject PlayerWeaponHolder;
     private Vector3 startPos;
-    
+
+    public GameObject textDeathPref;
     
     void Start()
     {
@@ -49,8 +50,14 @@ public class EnemyTakeDamage : MonoBehaviourPun
 
     IEnumerator ReSpawn()
     {
-        Debug.Log(gameObject.name);
+        GameObject textDeath = Instantiate(textDeathPref, transform.position, Quaternion.identity);
+        textDeath.transform.SetParent(GameObject.Find("Deaths").transform);
+        textDeath.GetComponent<Text>().text = "Killed " + gameObject.name;
+        textDeath.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
+        Destroy(textDeath, 5f);
 
+
+        GameObject.Find("Deaths");
         if (gameObject.CompareTag("Player"))
             TakeDamage.scoreB++;
         else

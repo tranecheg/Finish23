@@ -484,6 +484,8 @@ MonoBehaviour:
   PlayerGraphics: {fileID: 4190183117636471314}
   PlayerUI: {fileID: 6789818912051017716}
   PlayerWeaponHolder: {fileID: 2749850178701047273}
+  textDeathPref: {fileID: 5896756875943371936, guid: 20795551b9e3b7840b0e742977eb9207,
+    type: 3}
 --- !u!114 &-5113897272715856689
 MonoBehaviour:
   m_ObjectHideFlags: 0

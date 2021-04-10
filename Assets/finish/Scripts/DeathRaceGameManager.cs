@@ -9,7 +9,7 @@ public class DeathRaceGameManager : MonoBehaviourPunCallbacks
 {
     public GameObject[] PlayerPrefabs;
     public Text score;
-    
+    public int scoreForWin;
 
     // Start is called before the first frame update
     void Start()
@@ -45,7 +45,7 @@ public class DeathRaceGameManager : MonoBehaviourPunCallbacks
     {
         while (true)
         {
-            if (TakeDamage.scoreA > 1 || TakeDamage.scoreB > 1)
+            if (TakeDamage.scoreA > scoreForWin || TakeDamage.scoreB > scoreForWin)
                 OnQuitMatchButtonClicked();
 
             yield return new WaitForSeconds(1f);
