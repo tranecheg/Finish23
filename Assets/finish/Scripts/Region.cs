@@ -1,21 +1,22 @@
-﻿using System.Collections;
+﻿using Photon.Pun;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Region : MonoBehaviour
 {
-    public enum REGIONS
-    {
-        
-    }
-    void Start()
-    {
-        
-    }
+    public string region;
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
         
+    }
+    public void InputMenu(int value)
+    {
+        PhotonNetwork.Disconnect();
+        region = GetComponent<Dropdown>().options[value].text;
+        PhotonNetwork.ConnectToRegion(region);
+
     }
 }

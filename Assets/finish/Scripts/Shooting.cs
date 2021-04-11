@@ -27,7 +27,7 @@ public class Shooting : MonoBehaviourPun
     // Start is called before the first frame update
     void Start()
     {
-        PlayerCamera = Camera.main;
+        
 
         fireRate = DeathRacePlayerProperties.fireRate;
         if (!GetComponent<PhotonView>().Controller.IsLocal)

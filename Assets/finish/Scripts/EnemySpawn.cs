@@ -9,9 +9,9 @@ public class EnemySpawn : MonoBehaviour
     public GameObject[] enemyPrefab, TeamA, TeamB;
     
    
-    void Start()
+    void Awake()
     {
-        if (PhotonNetwork.PlayerList.Length < 2)
+        if (PhotonNetwork.PlayerList.Length > 1)
             gameObject.SetActive(false);
     }
 

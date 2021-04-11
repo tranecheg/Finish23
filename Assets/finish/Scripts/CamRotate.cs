@@ -43,12 +43,12 @@ public class CamRotate : MonoBehaviourPun
             return;
 
 
-        //  photonView.RPC("TransformCam", RpcTarget.AllBuffered, transform.localPosition, transform.localEulerAngles);
+        photonView.RPC("TransformCam", RpcTarget.AllBuffered, transform.localPosition, transform.localEulerAngles);
 
         if (gameObject.name == "GameObject")
         {
             
-            GameObject.Find(photonView.Controller.NickName).GetComponent<TakeDamage>().camPos = transform.position;
+           // GameObject.Find(photonView.Controller.NickName).GetComponent<TakeDamage>().camPos = transform.position;
         }
 
 
@@ -99,7 +99,7 @@ public class CamRotate : MonoBehaviourPun
     [PunRPC]
     void TransformCam(Vector3 targPos, Vector3 targRot)
     {
-       //GameObject.Find(transform.parent.gameObject.name).GetComponent<TakeDamage>().camPos = targPos;
-       // GameObject.Find(transform.parent.gameObject.name).GetComponent<TakeDamage>().camRot = targRot;
+       GameObject.Find(transform.parent.gameObject.name).GetComponent<TakeDamage>().camPos = targPos;
+       GameObject.Find(transform.parent.gameObject.name).GetComponent<TakeDamage>().camRot = targRot;
     }
 }
