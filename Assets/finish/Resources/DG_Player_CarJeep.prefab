@@ -355,7 +355,7 @@ MonoBehaviour:
   laserGun: {fileID: 8300000, guid: ac1cef8cadc95a24f8ddd690d7b67cc9, type: 3}
   machineGun: {fileID: 8300000, guid: 09448d0e6e446a149a0a3a81b2aa8be0, type: 3}
   rocketLauncher: {fileID: 8300000, guid: 9263be3f56eb23548aca53caf46be044, type: 3}
-  PlayerCamera: {fileID: 2110645828373731733}
+  PlayerCamera: {fileID: 0}
   lineRenderer: {fileID: 0}
 --- !u!114 &-3528624762644759863
 MonoBehaviour:

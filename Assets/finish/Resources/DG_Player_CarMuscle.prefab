@@ -856,7 +856,7 @@ MonoBehaviour:
   laserGun: {fileID: 8300000, guid: ac1cef8cadc95a24f8ddd690d7b67cc9, type: 3}
   machineGun: {fileID: 8300000, guid: 09448d0e6e446a149a0a3a81b2aa8be0, type: 3}
   rocketLauncher: {fileID: 8300000, guid: 9263be3f56eb23548aca53caf46be044, type: 3}
-  PlayerCamera: {fileID: 4725995218186248134}
+  PlayerCamera: {fileID: 0}
   lineRenderer: {fileID: 0}
 --- !u!114 &7893564968774119735
 MonoBehaviour:
@@ -1301,7 +1301,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6660462403696097794}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 3, z: -3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 889058424489412688}
