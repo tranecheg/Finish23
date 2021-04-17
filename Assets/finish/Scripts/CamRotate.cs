@@ -27,29 +27,51 @@ public class CamRotate : MonoBehaviourPun
     [SerializeField]
     private Vector2 _rotationXMinMax = new Vector2(-40, 40);
 
-    
+
+    private void Awake()
+    {
+        if (photonView == null)
+            return;
+
+        gameObject.name = "CameraHolder " + photonView.Controller.NickName;
+        transform.SetParent(GameObject.Find("Environment").transform);
+
+
+        if (!photonView.IsMine)
+        {
+            transform.GetChild(0).gameObject.SetActive(false);
+            GetComponent<CamRotate>().enabled = false;
+
+        }
+
+    }
+
 
     private void Start()
     {
-       if (photonView != null && !photonView.IsMine )
-           gameObject.SetActive(false);
-        if(_target==null)
+        if (photonView == null)
+            return;
+
+        
+
+        if (_target == null)
+        {
             _target = GameObject.Find(PhotonNetwork.LocalPlayer.NickName).transform;
+
+        }
+        
+        
+
+       
     }
 
     private void FixedUpdate()
     {
         if (photonView == null)
             return;
-
-
-        photonView.RPC("TransformCam", RpcTarget.AllBuffered, transform.localPosition, transform.localEulerAngles);
-
-        if (gameObject.name == "GameObject")
-        {
-            
-           // GameObject.Find(photonView.Controller.NickName).GetComponent<TakeDamage>().camPos = transform.position;
-        }
+        
+        if (GameObject.Find(photonView.Controller.NickName))
+            photonView.RPC("TransformCam", RpcTarget.AllBuffered, transform.position, transform.eulerAngles); // localPos
 
 
     }
@@ -99,7 +121,9 @@ public class CamRotate : MonoBehaviourPun
     [PunRPC]
     void TransformCam(Vector3 targPos, Vector3 targRot)
     {
-       GameObject.Find(transform.parent.gameObject.name).GetComponent<TakeDamage>().camPos = targPos;
-       GameObject.Find(transform.parent.gameObject.name).GetComponent<TakeDamage>().camRot = targRot;
+        GameObject.Find(photonView.Controller.NickName).GetComponent<TakeDamage>().camPos = targPos;
+        GameObject.Find(photonView.Controller.NickName).GetComponent<TakeDamage>().camRot = targRot;
+     
+
     }
 }

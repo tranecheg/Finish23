@@ -27,22 +27,17 @@ public class Shooting : MonoBehaviourPun
     // Start is called before the first frame update
     void Start()
     {
-        
-
         fireRate = DeathRacePlayerProperties.fireRate;
         if (!GetComponent<PhotonView>().Controller.IsLocal)
             GetComponent<Shooting>().enabled = false;
 
-        //PlayerCamera = Camera.main;
+         PlayerCamera = GameObject.Find("CameraHolder " + gameObject.name).transform.GetChild(0).GetComponent<Camera>();
 
         if (DeathRacePlayerProperties.weaponName== "Laser Gun" )
-        {
             useLaser = true;
-
-        }else
-        {
+        else
             useLaser = false;
-        }
+        
         
     }
 
