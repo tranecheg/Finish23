@@ -844,7 +844,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerPrefabs:
   - {fileID: 3189090968767411349, guid: 847e6c04291b4d94dbc7533ef9f71e91, type: 3}
-  - {fileID: 4689008684380552187, guid: e1600154f18f52143abcfd2a3156d23f, type: 3}
+  - {fileID: 23477949814457256, guid: 967f85eb9fdb7d64ea6c8ef8d958397e, type: 3}
   - {fileID: 2297249700076169209, guid: b3082af8ab127d0469de064cb59efbbe, type: 3}
   score: {fileID: 1087546936}
   scoreForWin: 0

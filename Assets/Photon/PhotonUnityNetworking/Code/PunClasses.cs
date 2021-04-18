@@ -73,6 +73,11 @@ namespace Photon.Pun
             }
         }
 
+        public void OnRoomListUpdate(List<RoomInfo> roomList)
+        {
+            throw new NotImplementedException();
+        }
+
         //#if UNITY_EDITOR
         //protected virtual void Reset()
         //{
