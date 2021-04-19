@@ -73,6 +73,9 @@ public class CamRotate : MonoBehaviourPun
         if (GameObject.Find(photonView.Controller.NickName))
             photonView.RPC("TransformCam", RpcTarget.AllBuffered, transform.position, transform.eulerAngles); // localPos
 
+        _target.transform.GetChild(1).transform.GetChild(0).transform.GetChild(1).transform.localEulerAngles =
+           new Vector3(-180, transform.eulerAngles.y, 0);
+
 
     }
 
