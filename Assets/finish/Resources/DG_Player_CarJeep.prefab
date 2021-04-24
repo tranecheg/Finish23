@@ -23,12 +23,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1721425624}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.28, z: -0.54}
+  m_LocalRotation: {x: -1, y: -0, z: -0, w: 0}
+  m_LocalPosition: {x: 0, y: -0.27100015, z: 0.59400034}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4723492315535190474}
-  m_RootOrder: 1
+  m_Father: {fileID: 1125159382796950368}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3335007551839991
 GameObject:
@@ -54,11 +54,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3335007551839991}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: -0.195, z: 0.119}
+  m_LocalPosition: {x: 0, y: -0.565, z: 2.041}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5492260960104971717}
-  - {fileID: 1721425625}
   m_Father: {fileID: 1200009155273679618}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
@@ -371,7 +370,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   starthHealth: 100
   health: 0
+  speedRotateWeapon: 5
   healthBar: {fileID: 5946105997015590243}
+  weapon: {fileID: 1125159382796950368}
   PlayerGraphics: {fileID: 2018793889560387852}
   PlayerUI: {fileID: 8653947417775955178}
   PlayerWeaponHolder: {fileID: 3335007551839991}
@@ -379,6 +380,7 @@ MonoBehaviour:
     type: 3}
   camPos: {x: 0, y: 0, z: 0}
   camRot: {x: 0, y: 0, z: 0}
+  startWeaponRot: {x: 0, y: 0, z: 0}
 --- !u!82 &6659226771947808323
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1230,13 +1232,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7594052751523557449}
-  m_LocalRotation: {x: 1, y: -0, z: 0, w: 0.000000021855694}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalRotation: {x: 1, y: 0, z: 0, w: 0}
+  m_LocalPosition: {x: 0, y: 1.398, z: 2.04}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1721425625}
   m_Father: {fileID: 5492260960104971717}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 180, y: 0, z: 0}
 --- !u!33 &5089862922300209312
 MeshFilter:
   m_ObjectHideFlags: 0

@@ -303,7 +303,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1452987648173347161}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: -1.006, z: 1.2}
+  m_LocalPosition: {x: 0, y: -0.565, z: 2.041}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3277553154579509063}
@@ -660,7 +660,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   starthHealth: 100
   health: 0
+  speedRotateWeapon: 10
   healthBar: {fileID: 4743990239124289505}
+  weapon: {fileID: 3820773205607439746}
   PlayerGraphics: {fileID: 1794880438820313497}
   PlayerUI: {fileID: 7731054696926973544}
   PlayerWeaponHolder: {fileID: 1452987648173347161}
@@ -668,6 +670,7 @@ MonoBehaviour:
     type: 3}
   camPos: {x: 0, y: 0, z: 0}
   camRot: {x: 0, y: 0, z: 0}
+  startWeaponRot: {x: 0, y: 0, z: 0}
 --- !u!82 &2728863237371270969
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1045,13 +1048,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4754906322877661006}
-  m_LocalRotation: {x: 1, y: -0, z: 0, w: 0.000000021855694}
-  m_LocalPosition: {x: 0.000000024046239, y: 1.5759954, z: 0.44681254}
+  m_LocalRotation: {x: 1, y: 0, z: 0, w: 0}
+  m_LocalPosition: {x: 0, y: 1.205, z: 1.057}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3277553154579509063}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 180, y: 0, z: 0}
 --- !u!33 &7305173002156696315
 MeshFilter:
   m_ObjectHideFlags: 0

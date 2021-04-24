@@ -8,10 +8,9 @@ using UnityStandardAssets.Vehicles.Car;
 
 public class TakeDamage : MonoBehaviourPun
 {
-    public float starthHealth = 100f;
-    public float health;
+    public float starthHealth = 100f, health, speedRotateWeapon = 10f;
     public Image healthBar;
-
+    public Transform weapon;
     Rigidbody rb;
 
     public GameObject PlayerGraphics;
@@ -23,13 +22,18 @@ public class TakeDamage : MonoBehaviourPun
     public static int scoreA, scoreB;
 
     public Vector3 camPos, camRot;
+    Vector3 startWeaponRot;
+
+   
     private void Awake()
     {
         gameObject.name = GetComponent<PhotonView>().Controller.NickName;
+        startWeaponRot = weapon.localEulerAngles;
+
     }
     void Start()
     {
-        
+       
 
         GetComponent<CarUserControl>().enabled = true;
         GetComponent<CarController>().enabled = true;
@@ -150,7 +154,11 @@ public class TakeDamage : MonoBehaviourPun
             GameObject.Find("CameraHolder " + gameObject.name).transform.position = camPos;
             GameObject.Find("CameraHolder " + gameObject.name).transform.eulerAngles = camRot;
         }
-        
+
+        weapon.localRotation = Quaternion.Slerp(weapon.localRotation, Quaternion.Euler(new Vector3(startWeaponRot.y, camRot.y - transform.eulerAngles.y, 0)), Time.deltaTime * speedRotateWeapon);
+
+
+
 
 
     }
