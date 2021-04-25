@@ -5,7 +5,7 @@ using Photon.Pun;
 
 public class Shooting : MonoBehaviourPun
 {
-    public GameObject BulletPrefab;
+    public GameObject BulletPrefab, startShot;
     public Transform firePosition;
     
 
@@ -129,8 +129,14 @@ public class Shooting : MonoBehaviourPun
             GameObject bullletGameObject = Instantiate(BulletPrefab, _firePosition, Quaternion.identity);
             bullletGameObject.GetComponent<BulletScript>().Initialize(ray.direction, DeathRacePlayerProperties.bulletSpeed, DeathRacePlayerProperties.damage);
 
+            
+
             if (DeathRacePlayerProperties.weaponName == "Rocket Launcher")
             {
+                GameObject exp = Instantiate(startShot, firePosition.position, Quaternion.identity);
+                exp.transform.SetParent(firePosition);
+                exp.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
+                Destroy(exp, 5);
                 audioSource.clip = rocketLauncher;
                 audioSource.Play();
 
@@ -138,6 +144,10 @@ public class Shooting : MonoBehaviourPun
             }
             if (DeathRacePlayerProperties.weaponName == "Machine Gun")
             {
+                GameObject exp = Instantiate(startShot, firePosition.position, Quaternion.identity);
+                exp.transform.SetParent(firePosition);
+                Destroy(exp, 3);
+
                 audioSource.clip = machineGun;
                 audioSource.Play();
 

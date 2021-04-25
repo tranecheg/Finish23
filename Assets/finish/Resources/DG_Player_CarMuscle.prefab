@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 5188851240475277155}
   - component: {fileID: 1404368401817216624}
   - component: {fileID: 7479454004551210024}
+  - component: {fileID: 4286032490246683254}
   m_Layer: 0
   m_Name: DG_Player_CarMuscle
   m_TagString: Player
@@ -140,6 +141,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BulletPrefab: {fileID: 8199238421558078776, guid: 35d44458c1899014786bf478fba74a09,
     type: 3}
+  startShot: {fileID: 100002, guid: 99c73c92ac40473459640b165473206f, type: 3}
   firePosition: {fileID: 4702283148644003850}
   DeathRacePlayerProperties: {fileID: 11400000, guid: 114e48655e7fb4b48ac375370be4b76e,
     type: 2}
@@ -318,6 +320,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96468c245ae8e0d4f8f1c7a7b8b0542e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4286032490246683254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 23477949814457256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02e006c90a1e63d48bc342048f405156, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minPitch: 0.6
+  pitchRB: 10
+  clip: {fileID: 8300000, guid: b049660b860c8334a852b54855bce599, type: 3}
 --- !u!1 &768871338484444652
 GameObject:
   m_ObjectHideFlags: 0

@@ -225,6 +225,7 @@ GameObject:
   - component: {fileID: 6659226771947808323}
   - component: {fileID: 4799571869694917482}
   - component: {fileID: 7092569579164298867}
+  - component: {fileID: 5091951708883471249}
   m_Layer: 0
   m_Name: DG_Player_CarJeep
   m_TagString: Player
@@ -346,6 +347,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BulletPrefab: {fileID: 2341865712234042820, guid: 2f77b45aab7070c4aad64a0699fbb716,
     type: 3}
+  startShot: {fileID: 100012, guid: 3364c97de68d3a147af572d1c71c6455, type: 3}
   firePosition: {fileID: 1721425625}
   DeathRacePlayerProperties: {fileID: 11400000, guid: 4169dd1d7b724db458770593612364ac,
     type: 2}
@@ -380,7 +382,6 @@ MonoBehaviour:
     type: 3}
   camPos: {x: 0, y: 0, z: 0}
   camRot: {x: 0, y: 0, z: 0}
-  startWeaponRot: {x: 0, y: 0, z: 0}
 --- !u!82 &6659226771947808323
 AudioSource:
   m_ObjectHideFlags: 0
@@ -525,6 +526,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96468c245ae8e0d4f8f1c7a7b8b0542e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5091951708883471249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2297249700076169209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02e006c90a1e63d48bc342048f405156, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minPitch: 0.6
+  pitchRB: 5
+  clip: {fileID: 8300000, guid: c0191f5eddde47443a5bfd777e6d37b6, type: 3}
 --- !u!1 &2428638183034918616
 GameObject:
   m_ObjectHideFlags: 0

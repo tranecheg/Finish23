@@ -10,7 +10,7 @@ namespace UnityStandardAssets.Vehicles.Car
     {
         private CarController m_Car; // the car controller we want to use
 
-
+       
         private void Start()
         {
             // get the car controller
@@ -27,6 +27,8 @@ namespace UnityStandardAssets.Vehicles.Car
             }
             float h = CrossPlatformInputManager.GetAxis("Horizontal");
             float v = CrossPlatformInputManager.GetAxis("Vertical");
+
+           
 #if !MOBILE_INPUT
             float handbrake = CrossPlatformInputManager.GetAxis("Jump");
             m_Car.Move(h, v, v, handbrake);

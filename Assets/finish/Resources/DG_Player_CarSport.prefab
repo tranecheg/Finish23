@@ -515,6 +515,7 @@ GameObject:
   - component: {fileID: 2728863237371270969}
   - component: {fileID: 3853433018968192414}
   - component: {fileID: 8571597376809919890}
+  - component: {fileID: 2340375988446394243}
   m_Layer: 0
   m_Name: DG_Player_CarSport
   m_TagString: Player
@@ -660,7 +661,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   starthHealth: 100
   health: 0
-  speedRotateWeapon: 10
+  speedRotateWeapon: 1
   healthBar: {fileID: 4743990239124289505}
   weapon: {fileID: 3820773205607439746}
   PlayerGraphics: {fileID: 1794880438820313497}
@@ -670,7 +671,6 @@ MonoBehaviour:
     type: 3}
   camPos: {x: 0, y: 0, z: 0}
   camRot: {x: 0, y: 0, z: 0}
-  startWeaponRot: {x: 0, y: 0, z: 0}
 --- !u!82 &2728863237371270969
 AudioSource:
   m_ObjectHideFlags: 0
@@ -682,7 +682,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -779,6 +779,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96468c245ae8e0d4f8f1c7a7b8b0542e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  soundMove: {fileID: 8300000, guid: b049660b860c8334a852b54855bce599, type: 3}
 --- !u!114 &8571597376809919890
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -815,6 +816,21 @@ MonoBehaviour:
   m_RevRangeBoundary: 1
   m_SlipLimit: 0.3
   m_BrakeTorque: 20000
+--- !u!114 &2340375988446394243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3189090968767411349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02e006c90a1e63d48bc342048f405156, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minPitch: 0.6
+  pitchRB: 10
+  clip: {fileID: 8300000, guid: c0191f5eddde47443a5bfd777e6d37b6, type: 3}
 --- !u!1 &3201080876831545251
 GameObject:
   m_ObjectHideFlags: 0
@@ -1775,7 +1791,7 @@ GameObject:
   - component: {fileID: 5908859543960681407}
   m_Layer: 0
   m_Name: Camera
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
