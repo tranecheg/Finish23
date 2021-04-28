@@ -22,6 +22,9 @@ public class Shooting : MonoBehaviourPun
     private float fireTimer = 0.0f;
     private bool useLaser;
     public LineRenderer lineRenderer;
+    public bool isShooting;
+    public Joystick joystick;
+    private float joystickHor, joystickVer;
     Ray ray;
    
     // Start is called before the first frame update
@@ -37,8 +40,14 @@ public class Shooting : MonoBehaviourPun
             useLaser = true;
         else
             useLaser = false;
-        
-        
+
+#if !UNITY_EDITOR
+        if (photonView.IsMine)
+            joystick = GameObject.Find("CarMove").GetComponent<FixedJoystick>();
+#endif
+
+
+
     }
 
     void Update()
@@ -49,25 +58,50 @@ public class Shooting : MonoBehaviourPun
         {
             return;
         }
-
+#if UNITY_EDITOR
+        
         if (Input.GetMouseButton(0))
         {
             if (fireTimer>fireRate)
             {
                 //fİRE
                 photonView.RPC("Fire", RpcTarget.All, firePosition.position);
-
+        
                 fireTimer = 0.0f;
             }       
         }
+#else
+        transform.GetChild(4).gameObject.SetActive(true);
+        if (isShooting)
+        {
+            if (fireTimer > fireRate)
+            {
+                //fİRE
+                photonView.RPC("Fire", RpcTarget.All, firePosition.position);
 
+                fireTimer = 0.0f;
+            }
+        }
+        joystickHor = joystick.Horizontal;
+        PlayerPrefs.SetFloat("JoystickHor", joystick.Horizontal);
+        joystickVer = joystick.Vertical;
+        PlayerPrefs.SetFloat("JoystickVer", joystick.Vertical);
+#endif
 
         if (fireTimer<fireRate)
         {
             fireTimer += Time.deltaTime;
         }
+      
+
         
 
+
+
+    }
+    public void Shot()
+    {
+        isShooting = !isShooting;
 
     }
 
