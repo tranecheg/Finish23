@@ -26,8 +26,10 @@ public class Shooting : MonoBehaviourPun
     public Joystick joystick;
     private float joystickHor, joystickVer;
     Ray ray;
-   
+
     // Start is called before the first frame update
+
+   
     void Start()
     {
         fireRate = DeathRacePlayerProperties.fireRate;
@@ -43,7 +45,11 @@ public class Shooting : MonoBehaviourPun
 
 #if !UNITY_EDITOR
         if (photonView.IsMine)
+        {
+            transform.GetChild(3).gameObject.SetActive(true);
             joystick = GameObject.Find("CarMove").GetComponent<FixedJoystick>();
+        }
+            
 #endif
 
 
@@ -71,7 +77,7 @@ public class Shooting : MonoBehaviourPun
             }       
         }
 #else
-        transform.GetChild(4).gameObject.SetActive(true);
+       
         if (isShooting)
         {
             if (fireTimer > fireRate)

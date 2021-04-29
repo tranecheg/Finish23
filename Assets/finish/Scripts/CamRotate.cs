@@ -47,12 +47,14 @@ public class CamRotate : MonoBehaviourPun
     }
 
 
+
+
     private void Start()
     {
         if (photonView == null)
             return;
 
-        
+
 
         if (_target == null)
         {
@@ -61,10 +63,14 @@ public class CamRotate : MonoBehaviourPun
         }
 #if !UNITY_EDITOR
         if (photonView.IsMine)
+        {
+            _target.transform.GetChild(3).gameObject.SetActive(true);
             joystick = GameObject.Find("CamMove").GetComponent<FixedJoystick>();
-#endif
+        }
 
+#endif
     }
+
 
     private void FixedUpdate()
     {
@@ -100,7 +106,7 @@ public class CamRotate : MonoBehaviourPun
     
     void CamMove()
     {
-#if UNITY_EDITOR
+#if !UNITY_EDITOR
         float mouseX = Input.GetAxis("Mouse X") * _mouseSensitivity;
         float mouseY = Input.GetAxis("Mouse Y") * _mouseSensitivity;
 #else
