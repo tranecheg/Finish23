@@ -725,6 +725,10 @@ MonoBehaviour:
   lineRenderer: {fileID: 1640175522}
   isShooting: 0
   joystick: {fileID: 0}
+  bullet: 500
+  reloadFinish: 10
+  bulletCount: 0
+  reloadTime: 0
 --- !u!114 &-1174681023735233409
 MonoBehaviour:
   m_ObjectHideFlags: 0

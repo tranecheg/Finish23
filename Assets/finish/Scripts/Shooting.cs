@@ -27,9 +27,8 @@ public class Shooting : MonoBehaviourPun
     private float joystickHor, joystickVer;
     Ray ray;
 
-    // Start is called before the first frame update
-
-   
+    public float bullet = 10f, reloadFinish = 10f;
+    public float bulletCount, reloadTime;
     void Start()
     {
         fireRate = DeathRacePlayerProperties.fireRate;
@@ -66,19 +65,19 @@ public class Shooting : MonoBehaviourPun
         }
 #if UNITY_EDITOR
         
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) && bulletCount > 0)
         {
             if (fireTimer>fireRate)
             {
                 //fİRE
                 photonView.RPC("Fire", RpcTarget.All, firePosition.position);
-        
+                bulletCount--;
                 fireTimer = 0.0f;
             }       
         }
 #else
        
-        if (isShooting)
+        if (isShooting && bulletCount > 0)
         {
             if (fireTimer > fireRate)
             {
@@ -98,9 +97,18 @@ public class Shooting : MonoBehaviourPun
         {
             fireTimer += Time.deltaTime;
         }
-      
 
-        
+        if (bulletCount == 0)
+            reloadTime -= Time.deltaTime;
+
+        if (reloadTime <= 0)
+        {
+            reloadTime = reloadFinish;
+            bulletCount = bullet;
+        }
+
+
+
 
 
 
@@ -159,6 +167,7 @@ public class Shooting : MonoBehaviourPun
 
                 StopAllCoroutines();
                 StartCoroutine(DisableLaserAfterSecs(0.3f));
+                
             }
 
         }

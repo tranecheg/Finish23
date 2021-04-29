@@ -100,13 +100,11 @@ public class CamRotate : MonoBehaviourPun
 
 
 
-
-
     }
     
     void CamMove()
     {
-#if !UNITY_EDITOR
+#if UNITY_EDITOR
         float mouseX = Input.GetAxis("Mouse X") * _mouseSensitivity;
         float mouseY = Input.GetAxis("Mouse Y") * _mouseSensitivity;
 #else
