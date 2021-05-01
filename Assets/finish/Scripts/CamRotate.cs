@@ -27,7 +27,8 @@ public class CamRotate : MonoBehaviourPun
     [SerializeField]
     private Vector2 _rotationXMinMax = new Vector2(-40, 40);
 
-    public Joystick joystick;
+    public FixedTouchField touchField;
+    private Vector2 lookAxis;
     private void Awake()
     {
         if (photonView == null)
@@ -65,7 +66,7 @@ public class CamRotate : MonoBehaviourPun
         if (photonView.IsMine)
         {
             _target.transform.GetChild(3).gameObject.SetActive(true);
-            joystick = GameObject.Find("CamMove").GetComponent<FixedJoystick>();
+           touchField = GameObject.Find("TouchPanel").GetComponent<FixedTouchField>();
         }
 
 #endif
@@ -108,8 +109,9 @@ public class CamRotate : MonoBehaviourPun
         float mouseX = Input.GetAxis("Mouse X") * _mouseSensitivity;
         float mouseY = Input.GetAxis("Mouse Y") * _mouseSensitivity;
 #else
-        float mouseX = joystick.Horizontal *_mouseSensitivity/3;
-        float mouseY = joystick.Vertical * _mouseSensitivity/3;
+        lookAxis = touchField.TouchDist;
+        float mouseX = lookAxis.x;
+        float mouseY = lookAxis.y;
 #endif
 
         _rotationY += mouseX;
