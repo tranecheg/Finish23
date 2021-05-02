@@ -109,7 +109,7 @@ public class CamRotate : MonoBehaviourPun
         float mouseX = Input.GetAxis("Mouse X") * _mouseSensitivity;
         float mouseY = Input.GetAxis("Mouse Y") * _mouseSensitivity;
 #else
-        lookAxis = touchField.TouchDist;
+        lookAxis = touchField.TouchDist * _mouseSensitivity/20;
         float mouseX = lookAxis.x;
         float mouseY = lookAxis.y;
 #endif

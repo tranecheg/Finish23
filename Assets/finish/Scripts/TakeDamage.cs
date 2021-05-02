@@ -34,10 +34,6 @@ public class TakeDamage : MonoBehaviourPun
     void Start()
     {
        
-
-        GetComponent<CarUserControl>().enabled = true;
-        GetComponent<CarController>().enabled = true;
-        
         health = starthHealth;
 
         healthBar.fillAmount = health / starthHealth;
@@ -55,8 +51,7 @@ public class TakeDamage : MonoBehaviourPun
     public void DoDamage(float _damage)
     {
         health -= _damage;
-        Debug.Log(health);
-
+      
         healthBar.fillAmount = health / starthHealth;
 
         if (health <= 0f)
@@ -75,7 +70,7 @@ public class TakeDamage : MonoBehaviourPun
         PlayerGraphics.SetActive(false);
         PlayerUI.SetActive(false);
         PlayerWeaponHolder.SetActive(false);
-
+        GetComponent<CarUserControl>().enabled = false;
 
         if (photonView.IsMine)
         {
@@ -142,6 +137,7 @@ public class TakeDamage : MonoBehaviourPun
         PlayerGraphics.SetActive(true);
         PlayerUI.SetActive(true);
         PlayerWeaponHolder.SetActive(true);
+        GetComponent<CarUserControl>().enabled = true;
     }
     
     

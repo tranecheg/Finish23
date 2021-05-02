@@ -38,8 +38,7 @@ public class EnemyTakeDamage : MonoBehaviourPun
     public void DoDamage(float _damage)
     {
         health -= _damage;
-        Debug.Log(health);
-
+       
         healthBar.fillAmount = health / starthHealth;
 
         if (health <= 0f)
