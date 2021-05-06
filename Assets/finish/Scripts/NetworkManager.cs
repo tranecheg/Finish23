@@ -60,7 +60,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
         PhotonNetwork.AutomaticallySyncScene = true;
 
-        PlayerNameInput.text = "Player " + Random.Range(0, 10000);
+        //PlayerNameInput.text = "Player " + Random.Range(0, 10000);
 
         timeLeft = maTime;
         StartCoroutine(StartGame());
@@ -106,21 +106,15 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
 
     #region UI Callback Methods
-    public void OnLoginButtonClicked()
+    public static void OnLoginButtonClicked(string playerName)
     {
-
-        string playerName = PlayerNameInput.text;
-
+       
+        
         if (!string.IsNullOrEmpty(playerName))
         {
 
-            ActivatePanel(ConnectingInfoUIPanel.name);
-
             if (!PhotonNetwork.IsConnected)
             {
-
-                
-
                 PhotonNetwork.LocalPlayer.NickName = playerName;
                 PhotonNetwork.ConnectUsingSettings();
             }
@@ -154,7 +148,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
             }
             RoomOptions roomOptions = new RoomOptions();
-            roomOptions.MaxPlayers = 3;
+            roomOptions.MaxPlayers = 20;
             string[] roomPropsInLobby = { "gm" }; //gm = game mode
 
             //two game modes

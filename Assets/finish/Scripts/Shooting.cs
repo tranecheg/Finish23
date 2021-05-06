@@ -57,8 +57,6 @@ public class Shooting : MonoBehaviourPun
 
     void Update()
     {
-
-        
         if (!photonView.IsMine)
         {
             return;
@@ -107,7 +105,7 @@ public class Shooting : MonoBehaviourPun
             bulletCount = bullet;
         }
 
-
+        transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, 0);//переворот обратно, потом удалить!
 
 
 
