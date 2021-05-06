@@ -27,7 +27,7 @@ namespace UnityStandardAssets.Vehicles.Car
             {
                 return;
             }
-#if UNITY_EDITOR
+#if UNITY_EDITOR || UNITY_STANDALONE_WIN
             float h = CrossPlatformInputManager.GetAxis("Horizontal");
             float v = CrossPlatformInputManager.GetAxis("Vertical");
 #else

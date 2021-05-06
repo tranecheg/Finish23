@@ -45,6 +45,7 @@ public class CamRotate : MonoBehaviourPun
 
         }
 
+
     }
 
 
@@ -62,7 +63,7 @@ public class CamRotate : MonoBehaviourPun
             _target = GameObject.Find(PhotonNetwork.LocalPlayer.NickName).transform;
 
         }
-#if !UNITY_EDITOR
+#if !UNITY_EDITOR && !UNITY_STANDALONE_WIN
         if (photonView.IsMine)
         {
             _target.transform.GetChild(3).gameObject.SetActive(true);
@@ -71,6 +72,7 @@ public class CamRotate : MonoBehaviourPun
 
 #endif
     }
+
 
 
     private void FixedUpdate()
@@ -105,7 +107,7 @@ public class CamRotate : MonoBehaviourPun
     
     void CamMove()
     {
-#if UNITY_EDITOR
+#if UNITY_EDITOR || UNITY_STANDALONE_WIN
         float mouseX = Input.GetAxis("Mouse X") * _mouseSensitivity;
         float mouseY = Input.GetAxis("Mouse Y") * _mouseSensitivity;
 #else

@@ -42,7 +42,7 @@ public class Shooting : MonoBehaviourPun
         else
             useLaser = false;
 
-#if !UNITY_EDITOR
+#if !UNITY_EDITOR && !UNITY_STANDALONE_WIN
         if (photonView.IsMine)
         {
             transform.GetChild(3).gameObject.SetActive(true);
@@ -61,8 +61,8 @@ public class Shooting : MonoBehaviourPun
         {
             return;
         }
-#if UNITY_EDITOR
-        
+#if UNITY_EDITOR || UNITY_STANDALONE_WIN
+
         if (Input.GetMouseButton(0) && bulletCount > 0)
         {
             if (fireTimer>fireRate)
