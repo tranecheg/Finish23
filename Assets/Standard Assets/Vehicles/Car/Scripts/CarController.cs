@@ -21,7 +21,7 @@ namespace UnityStandardAssets.Vehicles.Car
         [SerializeField] private CarDriveType m_CarDriveType = CarDriveType.FourWheelDrive;
         [SerializeField] private WheelCollider[] m_WheelColliders = new WheelCollider[4];
         [SerializeField] private GameObject[] m_WheelMeshes = new GameObject[4];
-        // [SerializeField] private WheelEffects[] m_WheelEffects = new WheelEffects[4];
+        [SerializeField] private WheelEffects[] m_WheelEffects = new WheelEffects[4];
         [SerializeField] private Vector3 m_CentreOfMassOffset;
         [SerializeField] private float m_MaximumSteerAngle;
         [Range(0, 1)] [SerializeField] private float m_SteerHelper; // 0 is raw physics , 1 the car will grip in the direction it is facing
@@ -71,7 +71,7 @@ namespace UnityStandardAssets.Vehicles.Car
 
             m_MaxHandbrakeTorque = float.MaxValue;
 
-           
+            
             m_CurrentTorque = m_FullTorqueOverAllWheels - (m_TractionControl * m_FullTorqueOverAllWheels);
         }
 
@@ -171,7 +171,7 @@ namespace UnityStandardAssets.Vehicles.Car
             GearChanging();
 
             AddDownForce();
-
+            CheckForWheelSpin();
             TractionControl();
         }
 
@@ -272,7 +272,38 @@ namespace UnityStandardAssets.Vehicles.Car
         // 2) plays tiure skidding sounds
         // 3) leaves skidmarks on the ground
         // these effects are controlled through the WheelEffects class
+        private void CheckForWheelSpin()
+        {
+            // loop through all wheels
+            for (int i = 0; i < 4; i++)
+            {
+                WheelHit wheelHit;
+                m_WheelColliders[i].GetGroundHit(out wheelHit);
 
+                // is the tire slipping above the given threshhold
+                if (Mathf.Abs(wheelHit.forwardSlip) >= m_SlipLimit || Mathf.Abs(wheelHit.sidewaysSlip) >= m_SlipLimit)
+                {
+                    m_WheelEffects[i].EmitTyreSmoke();
+
+                    // avoiding all four tires screeching at the same time
+                    // if they do it can lead to some strange audio artefacts
+                    if (!AnySkidSoundPlaying())
+                    {
+                        m_WheelEffects[i].PlayAudio();
+                    }
+                    continue;
+                }
+
+                // if it wasnt slipping stop all the audio
+                if (m_WheelEffects[i].PlayingAudio)
+                {
+                    m_WheelEffects[i].StopAudio();
+                }
+                // end the trail generation
+                if(transform.eulerAngles.z>30 && transform.eulerAngles.z<350)
+                    m_WheelEffects[i].EndSkidTrail();
+            }
+        }
 
         // crude traction control that reduces the power to wheel if the car is wheel spinning too much
         private void TractionControl()
@@ -326,6 +357,16 @@ namespace UnityStandardAssets.Vehicles.Car
         }
 
 
-
+        private bool AnySkidSoundPlaying()
+        {
+            for (int i = 0; i < 4; i++)
+            {
+                if (m_WheelEffects[i].PlayingAudio)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }
