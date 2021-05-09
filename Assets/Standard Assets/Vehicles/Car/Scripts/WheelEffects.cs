@@ -20,16 +20,16 @@ namespace UnityStandardAssets.Vehicles.Car
 
         private void Start()
         {
-            //skidParticles = transform.root.GetComponentInChildren<ParticleSystem>();
-            //
-            //if (skidParticles == null)
-            //{
-            //    Debug.LogWarning(" no particle system found on car to generate smoke particles");
-            //}
-            //else
-            //{
-            //    skidParticles.Stop();
-            //}
+            skidParticles = transform.root.GetComponentInChildren<ParticleSystem>();
+
+            if (skidParticles == null)
+            {
+                Debug.LogWarning(" no particle system found on car to generate smoke particles");
+            }
+            else
+            {
+                skidParticles.Stop();
+            }
 
             m_WheelCollider = GetComponent<WheelCollider>();
             m_AudioSource = GetComponent<AudioSource>();
@@ -39,14 +39,13 @@ namespace UnityStandardAssets.Vehicles.Car
             {
                 skidTrailsDetachedParent = new GameObject("Skid Trails - Detached").transform;
             }
-
         }
 
 
         public void EmitTyreSmoke()
         {
-            //skidParticles.transform.position = transform.position - transform.up*m_WheelCollider.radius;
-            //skidParticles.Emit(1);
+            skidParticles.transform.position = transform.position - transform.up*m_WheelCollider.radius;
+            skidParticles.Emit(1);
             if (!skidding)
             {
                 StartCoroutine(StartSkidTrail());
@@ -77,7 +76,7 @@ namespace UnityStandardAssets.Vehicles.Car
                 yield return null;
             }
             m_SkidTrail.parent = transform;
-            m_SkidTrail.localPosition = -Vector3.up * m_WheelCollider.radius;
+            m_SkidTrail.localPosition = -Vector3.up*m_WheelCollider.radius;
         }
 
 
