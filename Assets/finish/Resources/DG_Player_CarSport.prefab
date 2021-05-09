@@ -984,6 +984,7 @@ MonoBehaviour:
   machineGun: {fileID: 8300000, guid: 09448d0e6e446a149a0a3a81b2aa8be0, type: 3}
   rocketLauncher: {fileID: 8300000, guid: 9263be3f56eb23548aca53caf46be044, type: 3}
   PlayerCamera: {fileID: 7258610904671554165}
+  useLaser: 0
   lineRenderer: {fileID: 1640175522}
   isShooting: 0
   joystick: {fileID: 0}

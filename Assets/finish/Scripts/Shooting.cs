@@ -20,7 +20,7 @@ public class Shooting : MonoBehaviourPun
 
     private float fireRate;
     private float fireTimer = 0.0f;
-    private bool useLaser;
+    public bool useLaser;
     public LineRenderer lineRenderer;
     public bool isShooting;
     public Joystick joystick;
