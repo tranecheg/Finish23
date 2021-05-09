@@ -22,7 +22,8 @@ public class TakeDamage : MonoBehaviourPun
     public static int scoreA, scoreB;
 
     public Vector3 camPos, camRot;
-    Vector3 startWeaponRot;
+    Vector3 startWeaponRot, startPos;
+
 
    
     private void Awake()
@@ -43,7 +44,7 @@ public class TakeDamage : MonoBehaviourPun
         string[] tags = { "Player", "Enemy" };
         gameObject.tag = tags[Random.Range(0,2)];
 
-
+        startPos = transform.position;
     }
 
     
@@ -117,8 +118,7 @@ public class TakeDamage : MonoBehaviourPun
         GetComponent<Shooting>().enabled = true;
 
 
-        int randomPoint = Random.Range(-20,20);
-        transform.position = new Vector3(randomPoint,0,randomPoint);
+        transform.position = startPos;
 
         if (gameObject.CompareTag("Player"))
             scoreB++;
@@ -153,7 +153,12 @@ public class TakeDamage : MonoBehaviourPun
 
         weapon.localRotation = Quaternion.Slerp(weapon.localRotation, Quaternion.Euler(new Vector3(startWeaponRot.y, camRot.y - transform.eulerAngles.y, 0)), Time.deltaTime * speedRotateWeapon);
 
-
+        if (transform.localEulerAngles.z > 80 && transform.localEulerAngles.z < 300)
+        {
+            transform.position = startPos;
+            transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y + 5, 0);
+        }
+           
 
 
 
