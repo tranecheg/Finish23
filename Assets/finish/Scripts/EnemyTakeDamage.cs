@@ -41,9 +41,12 @@ public class EnemyTakeDamage : MonoBehaviourPun
        
         healthBar.fillAmount = health / starthHealth;
 
+        
+
         if (health <= 0f)
         {
             StartCoroutine(ReSpawn());
+            
         }
     }
 
