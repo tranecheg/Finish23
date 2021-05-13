@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using UnityEngine.Networking;
 
 public class BulletScript : MonoBehaviourPun
 {
@@ -30,7 +31,18 @@ public class BulletScript : MonoBehaviourPun
             if (collision.gameObject.GetComponent<PhotonView>().IsMine)
             {
                 collision.gameObject.GetComponent<PhotonView>().RPC("DoDamage", RpcTarget.AllBuffered, bulletDamage);
-                
+                if (collision.gameObject.GetComponent<EnemyTakeDamage>().health <= 0)
+                {
+                    PlayerParams.expDb += 10;
+                    PlayerParams.coinsDb += 5;
+                    if (PlayerParams.expDb >= 100)
+                    {
+                        PlayerParams.expDb = 0;
+                        PlayerParams.levelDb++;
+                    }
+                    StartCoroutine(ChangeParams(PlayerParams.loginDb, PlayerParams.levelDb.ToString(), PlayerParams.expDb.ToString(), PlayerParams.coinsDb.ToString()));
+                }
+
             }         
         }
         if (collision.gameObject.CompareTag("Enemy"))
@@ -38,7 +50,17 @@ public class BulletScript : MonoBehaviourPun
             if (collision.gameObject.GetComponent<PhotonView>().IsMine)
             {
                 collision.gameObject.GetComponent<PhotonView>().RPC("DoDamage", RpcTarget.AllBuffered, bulletDamage);
-            
+                if (collision.gameObject.GetComponent<EnemyTakeDamage>().health <= 0)
+                {
+                    PlayerParams.expDb += 10;
+                    PlayerParams.coinsDb += 5;
+                    if (PlayerParams.expDb >= 100)
+                    {
+                        PlayerParams.expDb = 0;
+                        PlayerParams.levelDb++;
+                    }
+                    StartCoroutine(ChangeParams(PlayerParams.loginDb, PlayerParams.levelDb.ToString(), PlayerParams.expDb.ToString(), PlayerParams.coinsDb.ToString()));
+                }
 
             }
 
@@ -60,6 +82,19 @@ public class BulletScript : MonoBehaviourPun
         
         
     }
-   
-    
+    IEnumerator ChangeParams(string login, string level, string exp, string coins)
+    {
+        WWWForm form = new WWWForm();
+        form.AddField("login", login);
+        form.AddField("level", level);
+        form.AddField("exp", exp);
+        form.AddField("coins", coins);
+
+        UnityWebRequest www = UnityWebRequest.Post("https://finish230.000webhostapp.com/change.php", form);
+        yield return www.SendWebRequest();
+
+
+    }
+
+
 }
