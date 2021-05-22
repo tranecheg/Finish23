@@ -34,7 +34,7 @@ public class BulletScript : MonoBehaviourPun
 
                 if (collision.GetComponent<TakeDamage>() != null && collision.GetComponent<TakeDamage>().health <= 0)
                 {
-                    //ChangeParams();
+                    ChangeParams();
                 }
                 if (collision.GetComponent<EnemyTakeDamage>() != null && collision.GetComponent<EnemyTakeDamage>().health <= 0)
                 {
@@ -52,7 +52,7 @@ public class BulletScript : MonoBehaviourPun
                collision.GetComponent<PhotonView>().RPC("DoDamage", RpcTarget.AllBuffered, bulletDamage);
                 if (collision.GetComponent<TakeDamage>() != null && collision.GetComponent<TakeDamage>().health <= 0)
                 {
-                   // ChangeParams();
+                    ChangeParams();
                 }
                 if (collision.GetComponent<EnemyTakeDamage>() != null && collision.GetComponent<EnemyTakeDamage>().health <= 0)
                 {
