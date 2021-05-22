@@ -60,8 +60,8 @@ public class CreateUsers : MonoBehaviour
 
     }
     
-    void AddUser(string login, string pass)
-    {
+        void AddUser(string login, string pass)
+        {
         //loginField.text = "";
         //passField.text = "";
 
@@ -70,6 +70,7 @@ public class CreateUsers : MonoBehaviour
         form.AddField("password", pass);
 
         UnityWebRequest.Post("https://finish230.000webhostapp.com/reg.php", form).SendWebRequest();
-        NetworkManager.OnLoginButtonClicked(login);
-    }
+       
+
+        }
 }

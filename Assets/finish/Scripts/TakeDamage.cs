@@ -23,18 +23,18 @@ public class TakeDamage : MonoBehaviourPun
 
     public Vector3 camPos, camRot;
     Vector3 startWeaponRot, startPos;
+    public bool isShooting;
 
 
-   
     private void Awake()
     {
         gameObject.name = GetComponent<PhotonView>().Controller.NickName;
-        startWeaponRot = weapon.localEulerAngles;
-
+        
     }
     void Start()
     {
-       
+        StartCoroutine(GetWeapon());
+
         health = starthHealth;
 
         healthBar.fillAmount = health / starthHealth;
@@ -47,7 +47,14 @@ public class TakeDamage : MonoBehaviourPun
         startPos = transform.position;
     }
 
-    
+    IEnumerator GetWeapon()
+    {
+        yield return new WaitForSeconds(1f);
+        weapon = transform.GetChild(1).transform.GetChild(0).transform.GetChild(0);
+        startWeaponRot = weapon.localEulerAngles;
+
+    }
+
     [PunRPC]
     public void DoDamage(float _damage)
     {
@@ -66,7 +73,6 @@ public class TakeDamage : MonoBehaviourPun
     {
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
-
 
         PlayerGraphics.SetActive(false);
         PlayerUI.SetActive(false);
@@ -114,8 +120,8 @@ public class TakeDamage : MonoBehaviourPun
 
         DeathPanelUIGameObject.SetActive(false);
 
-       // GetComponent<CarMovement>().enabled = true;
-        GetComponent<Shooting>().enabled = true;
+        // GetComponent<CarMovement>().enabled = true;
+       GetComponent<Shooting>().enabled = true;
 
 
         transform.position = startPos;
@@ -139,8 +145,8 @@ public class TakeDamage : MonoBehaviourPun
         PlayerWeaponHolder.SetActive(true);
         GetComponent<CarUserControl>().enabled = true;
     }
-    
-    
+
+   
 
     // Update is called once per frame
     void Update()
@@ -151,20 +157,23 @@ public class TakeDamage : MonoBehaviourPun
             GameObject.Find("CameraHolder " + gameObject.name).transform.eulerAngles = camRot;
         }
 
-        weapon.localRotation = Quaternion.Slerp(weapon.localRotation, Quaternion.Euler(new Vector3(startWeaponRot.y, camRot.y - transform.eulerAngles.y, 0)), Time.deltaTime * speedRotateWeapon);
+        weapon.localRotation = Quaternion.Slerp(weapon.localRotation, Quaternion.Euler(new Vector3(startWeaponRot.y, (camRot.y - transform.eulerAngles.y) * -1f, 0)), Time.deltaTime * speedRotateWeapon);
 
-        if (transform.localEulerAngles.z > 80 && transform.localEulerAngles.z < 300)
-        {
-            transform.position = startPos;
-            transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y + 5, 0);
-        }
+       //if (transform.localEulerAngles.z > 80 && transform.localEulerAngles.z < 300)
+       //{
+       //    transform.position = startPos;
+       //    transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y + 5, 0);
+       //}
            
 
 
 
     }
-    
-    
+    public void Shot()
+    {
+        isShooting = !isShooting;
+
+    }
 
 
 

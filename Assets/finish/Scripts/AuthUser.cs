@@ -29,7 +29,7 @@ public class AuthUser : MonoBehaviour
         {
             Debug.Log("Success!!!");
             NetworkManager.OnLoginButtonClicked(login);
-            
+           
         }
         else
             Debug.Log("Error!!!");

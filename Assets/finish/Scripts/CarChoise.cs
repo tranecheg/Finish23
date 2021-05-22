@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class CarChoise : MonoBehaviour
 {
-    private int carIndex, currentWeapon;
-    GameObject firstActiveGameObject;
+    private int carIndex;
+    public static string car;
     
     void Update()
     {
@@ -15,6 +15,7 @@ public class CarChoise : MonoBehaviour
             if (i == carIndex)
             {
                 transform.GetChild(i).gameObject.SetActive(true);
+                car = transform.GetChild(i).gameObject.name;
             }
             else
             {

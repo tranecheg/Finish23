@@ -25,48 +25,58 @@ public class BulletScript : MonoBehaviourPun
     private void OnTriggerEnter(Collider collision)
     {
        
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.CompareTag("Player"))
         {
 
-            if (collision.gameObject.GetComponent<PhotonView>().IsMine)
+            if (collision.GetComponent<PhotonView>().IsMine)
             {
-                collision.gameObject.GetComponent<PhotonView>().RPC("DoDamage", RpcTarget.AllBuffered, bulletDamage);
-                if (collision.gameObject.GetComponent<EnemyTakeDamage>().health <= 0)
+               collision.GetComponent<PhotonView>().RPC("DoDamage", RpcTarget.AllBuffered, bulletDamage);
+
+                if (collision.GetComponent<TakeDamage>() != null && collision.GetComponent<TakeDamage>().health <= 0)
                 {
-                    PlayerParams.expDb += 10;
-                    PlayerParams.coinsDb += 5;
-                    if (PlayerParams.expDb >= 100)
-                    {
-                        PlayerParams.expDb = 0;
-                        PlayerParams.levelDb++;
-                    }
-                    StartCoroutine(ChangeParams(PlayerParams.loginDb, PlayerParams.levelDb.ToString(), PlayerParams.expDb.ToString(), PlayerParams.coinsDb.ToString()));
+                    //ChangeParams();
                 }
+                if (collision.GetComponent<EnemyTakeDamage>() != null && collision.GetComponent<EnemyTakeDamage>().health <= 0)
+                {
+
+                }
+
+
 
             }         
         }
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (collision.CompareTag("Enemy"))
         {
-            if (collision.gameObject.GetComponent<PhotonView>().IsMine)
+            if (collision.GetComponent<PhotonView>().IsMine)
             {
-                collision.gameObject.GetComponent<PhotonView>().RPC("DoDamage", RpcTarget.AllBuffered, bulletDamage);
-                if (collision.gameObject.GetComponent<EnemyTakeDamage>().health <= 0)
+               collision.GetComponent<PhotonView>().RPC("DoDamage", RpcTarget.AllBuffered, bulletDamage);
+                if (collision.GetComponent<TakeDamage>() != null && collision.GetComponent<TakeDamage>().health <= 0)
                 {
-                    PlayerParams.expDb += 10;
-                    PlayerParams.coinsDb += 5;
-                    if (PlayerParams.expDb >= 100)
-                    {
-                        PlayerParams.expDb = 0;
-                        PlayerParams.levelDb++;
-                    }
-                    StartCoroutine(ChangeParams(PlayerParams.loginDb, PlayerParams.levelDb.ToString(), PlayerParams.expDb.ToString(), PlayerParams.coinsDb.ToString()));
+                   // ChangeParams();
                 }
+                if (collision.GetComponent<EnemyTakeDamage>() != null && collision.GetComponent<EnemyTakeDamage>().health <= 0)
+                {
+
+                }
+
 
             }
 
         }
         Destroy(gameObject);
 
+    }
+
+    void ChangeParams()
+    {
+           PlayerParams.expDb += 10;
+           PlayerParams.coinsDb += 5;
+           if (PlayerParams.expDb >= 100)
+           {
+               PlayerParams.expDb = 0;
+               PlayerParams.levelDb++;
+           }
+           StartCoroutine(ChangeParams(PlayerParams.loginDb, PlayerParams.levelDb.ToString(), PlayerParams.expDb.ToString(), PlayerParams.coinsDb.ToString()));
     }
 
     public void Initialize(Vector3 _direction,float speed, float damage)

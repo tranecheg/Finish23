@@ -24,40 +24,59 @@ public class Shooting : MonoBehaviourPun
     private float fireTimer = 0.0f;
     private bool useLaser;
     public LineRenderer lineRenderer;
-    public bool isShooting;
+   
     public Joystick joystick;
     private float joystickHor, joystickVer;
     Ray ray;
 
     public float bullet = 10f, reloadFinish = 10f;
     public float bulletCount, reloadTime;
+    
+
+
     void Start()
     {
-        fireRate = DeathRacePlayerProperties.fireRate;
-        if (!GetComponent<PhotonView>().Controller.IsLocal)
-            GetComponent<Shooting>().enabled = false;
+        
+        transform.SetParent(GameObject.Find(photonView.Controller.NickName).transform.GetChild(1));
+        PlayerCamera = GameObject.Find("CameraHolder " + transform.parent.transform.parent.gameObject.name).transform.GetChild(0).GetComponent<Camera>();
+        
+        audioSource = transform.parent.transform.parent.GetComponent<AudioSource>();
 
-         PlayerCamera = GameObject.Find("CameraHolder " + gameObject.name).transform.GetChild(0).GetComponent<Camera>();
-
-        if (DeathRacePlayerProperties.weaponName== "Laser Gun" )
+        if (DeathRacePlayerProperties.weaponName == "Laser Gun")
             useLaser = true;
         else
             useLaser = false;
+        fireRate = DeathRacePlayerProperties.fireRate;
+
+
+
+        if (GameObject.Find(photonView.Controller.NickName))
+            photonView.RPC("TransformGun", RpcTarget.AllBuffered, GunSelected.selectionPos, GunSelected.selectionRot);
+
 
 #if !UNITY_EDITOR && !UNITY_STANDALONE_WIN
         if (photonView.IsMine)
         {
-            transform.GetChild(3).gameObject.SetActive(true);
+            transform.parent.transform.parent.transform.GetChild(3).gameObject.SetActive(true);
             joystick = GameObject.Find("CarMove").GetComponent<FixedJoystick>();
         }
             
 #endif
 
+        if (!transform.parent.transform.parent.GetComponent<PhotonView>().Controller.IsLocal)
+            GetComponent<Shooting>().enabled = false;
 
 
     }
+    [PunRPC]
+    void TransformGun(Vector3 gunPos, Vector3 gunRot)
+    {
+        transform.localPosition = gunPos;
+        transform.localEulerAngles = gunRot;
+    }
 
-    void Update()
+
+void Update()
     {
         if (!photonView.IsMine)
         {
@@ -77,7 +96,7 @@ public class Shooting : MonoBehaviourPun
         }
 #else
        
-        if (isShooting && bulletCount > 0)
+        if (transform.parent.transform.parent.GetComponent<TakeDamage>().isShooting && bulletCount > 0)
         {
             if (fireTimer > fireRate)
             {
@@ -110,11 +129,7 @@ public class Shooting : MonoBehaviourPun
         
 
     }
-    public void Shot()
-    {
-        isShooting = !isShooting;
-
-    }
+    
 
     [PunRPC]
     public void Fire(Vector3 _firePosition)
@@ -207,7 +222,7 @@ public class Shooting : MonoBehaviourPun
                 GameObject exp = Instantiate(startShot, firePosition.position, Quaternion.identity);
                 exp.transform.SetParent(firePosition);
                 exp.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
-                Destroy(exp, 5);
+                Destroy(exp, 3);
                 audioSource.clip = rocketLauncher;
                 audioSource.Play();
 
