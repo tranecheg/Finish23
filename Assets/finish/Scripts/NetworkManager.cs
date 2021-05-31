@@ -61,8 +61,10 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         PhotonNetwork.AutomaticallySyncScene = true;
 
         //PlayerNameInput.text = "Player " + Random.Range(0, 10000);
+       
 
-        timeLeft = maTime;
+
+            timeLeft = maTime;
         StartCoroutine(StartGame());
 
         

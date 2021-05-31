@@ -20,6 +20,7 @@ public class GunSelected : MonoBehaviour
         selectionRot = SelectableGun[x].transform.localEulerAngles;
         pos = selectionPos;
         rot = selectionRot;
+      
 
     }
     public void GetGuns()

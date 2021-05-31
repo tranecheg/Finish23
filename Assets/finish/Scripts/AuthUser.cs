@@ -7,13 +7,20 @@ using UnityEngine.UI;
 public class AuthUser : MonoBehaviour
 {
     public InputField loginField, passField;
-   
+
+    private void Start()
+    {
+        if (PlayerPrefs.GetString("login") != null && PlayerPrefs.GetString("pass") != null)
+        {
+            loginField.text = PlayerPrefs.GetString("login");
+            passField.text = PlayerPrefs.GetString("pass");
+        }
+    }
+
     public void AuthClick()
     {
         if (loginField.text != "" && passField.text != "")
             StartCoroutine(Auth(loginField.text, passField.text));
-
-
     }
 
     IEnumerator Auth(string login, string pass)
@@ -28,6 +35,8 @@ public class AuthUser : MonoBehaviour
         if (data == "Done")
         {
             Debug.Log("Success!!!");
+            PlayerPrefs.SetString("login", login);
+            PlayerPrefs.SetString("pass", pass);
             NetworkManager.OnLoginButtonClicked(login);
            
         }
