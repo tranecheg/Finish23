@@ -7,6 +7,7 @@ public class GunControl : MonoBehaviour
     public GameObject upgrade, gunControl, cam, target, mobile;
     public Vector3 targetPos;
     public bool isUp, isDown;
+    public Color col;
 
     void Start()
     {
@@ -16,7 +17,7 @@ public class GunControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(target!=null && target.transform.GetChild(0).GetComponent<MeshRenderer>().material.color.a!=0.5f)
+        if(target!=null && target.transform.GetChild(0).GetComponent<MeshRenderer>().material.color == col)
             targetPos = target.transform.localPosition;
 
         if(isUp)
@@ -35,7 +36,7 @@ public class GunControl : MonoBehaviour
         target.GetComponent<GunMove>().enabled = true;
         target.GetComponent<GunMove>().yPos = target.transform.position.y;
         Renderer ren = target.transform.GetChild(0).GetComponent<MeshRenderer>();
-        ren.material.color = new Color(ren.material.color.r, ren.material.color.g, ren.material.color.b, 1f);
+        ren.material.color = col;
 
 #if !UNITY_EDITOR && !UNITY_STANDALONE_WIN
         mobile.SetActive(true);
@@ -48,7 +49,7 @@ public class GunControl : MonoBehaviour
         target.GetComponent<GunMove>().enabled = false;
         target.transform.localPosition = targetPos;
         Renderer ren = target.transform.GetChild(0).GetComponent<MeshRenderer>();
-        ren.material.color = new Color(ren.material.color.r, ren.material.color.g, ren.material.color.b, 1f);
+        ren.material.color = col;
         mobile.SetActive(false);
 
     }

@@ -9,6 +9,7 @@ public class GunMove : MonoBehaviour
     Renderer ren;
     Material mat;
     public Joystick joystick;
+    public Color col;
     void Start()
     {
        
@@ -39,20 +40,19 @@ public class GunMove : MonoBehaviour
         mat = ren.material;
     }
     
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.tag == "Player")
         {
-            ren.material.color = new Color(ren.material.color.r, ren.material.color.g, ren.material.color.b, 1);
+            ren.material.color = col;
         }
         
-
     }
     private void OnTriggerExit(Collider other)
     {
         if (other.tag == "Player")
         {
-            ren.material.color = new Color(ren.material.color.r, ren.material.color.g, ren.material.color.b, 0.5f);
+            ren.material.color = Color.red;
         }
 
     }

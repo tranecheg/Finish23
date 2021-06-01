@@ -1683,6 +1683,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   yPos: 0
   joystick: {fileID: 8494557913988033727}
+  col: {r: 0.39607844, g: 0.39607844, b: 0.39607844, a: 1}
 --- !u!54 &149399176
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4347,6 +4348,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   yPos: 0
   joystick: {fileID: 8494557913988033727}
+  col: {r: 0.39607844, g: 0.39607844, b: 0.39607844, a: 1}
 --- !u!54 &401680356
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5204,6 +5206,7 @@ MonoBehaviour:
   targetPos: {x: 0, y: 0, z: 0}
   isUp: 0
   isDown: 0
+  col: {r: 0.39607844, g: 0.39607844, b: 0.39607844, a: 1}
 --- !u!1 &509553895
 GameObject:
   m_ObjectHideFlags: 0
@@ -7467,6 +7470,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   yPos: 0
   joystick: {fileID: 8494557913988033727}
+  col: {r: 0.39607844, g: 0.39607844, b: 0.39607844, a: 1}
 --- !u!54 &787103835
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -8366,6 +8370,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   yPos: 0
   joystick: {fileID: 8494557913988033727}
+  col: {r: 0.39607844, g: 0.39607844, b: 0.39607844, a: 1}
 --- !u!54 &966808490
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -8782,6 +8787,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   yPos: 0
   joystick: {fileID: 8494557913988033727}
+  col: {r: 0.39607844, g: 0.39607844, b: 0.39607844, a: 1}
 --- !u!54 &1056427795
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -10663,13 +10669,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1259300670}
-  m_LocalRotation: {x: 0.07297704, y: 0, z: 0, w: 0.99733365}
-  m_LocalPosition: {x: 0, y: 0.463, z: 1.237}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.516, z: 1.007}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1713527406}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 8.37, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1259300672
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10681,7 +10687,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.36, y: 0.05, z: 0.81}
+  m_Size: {x: 1.36, y: 0.05, z: 0.45}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1272338445
 GameObject:
@@ -13954,6 +13960,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   yPos: 0
   joystick: {fileID: 8494557913988033727}
+  col: {r: 0.39607844, g: 0.39607844, b: 0.39607844, a: 1}
 --- !u!54 &1667184927
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -21215,6 +21222,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   yPos: 0
   joystick: {fileID: 8494557913988033727}
+  col: {r: 0.39607844, g: 0.39607844, b: 0.39607844, a: 1}
 --- !u!54 &1777365364092154054
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -23879,6 +23887,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   yPos: 0
   joystick: {fileID: 8494557913988033727}
+  col: {r: 0.39607844, g: 0.39607844, b: 0.39607844, a: 1}
 --- !u!54 &3381627852258524458
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -30527,6 +30536,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   yPos: 0
   joystick: {fileID: 8494557913988033727}
+  col: {r: 0.39607844, g: 0.39607844, b: 0.39607844, a: 1}
 --- !u!4 &6178889079177768813
 Transform:
   m_ObjectHideFlags: 0
@@ -32602,7 +32612,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6170354497072805572}
   m_LocalRotation: {x: 1, y: -0, z: -0, w: 0}
-  m_LocalPosition: {x: 0, y: 1.1492276, z: 1.141}
+  m_LocalPosition: {x: 0, y: 1.141273, z: 1.141}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8899377467751872018}
